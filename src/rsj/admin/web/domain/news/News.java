@@ -1,0 +1,102 @@
+package rsj.admin.web.domain.news;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import rsj.admin.web.enums.NewsType;
+
+import com.lehecai.core.YesNoStatus;
+
+public class News implements Serializable {
+
+	/**
+	 * 各类新闻
+	 */
+	private static final long serialVersionUID = -6100412628585480536L;
+	private Long id;
+	private String title;
+	private NewsType newsType;
+	private String content;
+	private String username;
+	private String updateUsername;
+	private Date createTime;
+	private Date updateTime;
+	private String imagePath;
+	private YesNoStatus isApply;
+	private YesNoStatus isImageNews;
+	private String memo;
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+	public String getMemo() {
+		return memo;
+	}
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+	public NewsType getNewsType() {
+		return newsType;
+	}
+	public void setNewsType(NewsType newsType) {
+		this.newsType = newsType;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public String getUpdateUsername() {
+		return updateUsername;
+	}
+	public void setUpdateUsername(String updateUsername) {
+		this.updateUsername = updateUsername;
+	}
+	public String getImagePath() {
+		return imagePath;
+	}
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+	public YesNoStatus getIsApply() {
+		return isApply;
+	}
+	public void setIsApply(YesNoStatus isApply) {
+		this.isApply = isApply;
+	}
+	public YesNoStatus getIsImageNews() {
+		return isImageNews;
+	}
+	public void setIsImageNews(YesNoStatus isImageNews) {
+		this.isImageNews = isImageNews;
+	}
+
+}

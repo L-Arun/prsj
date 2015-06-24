@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  - Application context definition for JPetStore's business layer.
+  - Contains bean references to the transaction manager and to the DAOs in
+  - dataAccessContext-local/jta.xml (see web.xml's "contextConfigLocation").
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xmlns:aop="http://www.springframework.org/schema/aop"
+	     xmlns:tx="http://www.springframework.org/schema/tx"
+	     xmlns:p="http://www.springframework.org/schema/p"
+	     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd"
+           default-autowire="byName">
+        <bean id="multiconfirmInterceptor" class="rsj.admin.web.interceptor.MulticonfirmInterceptor" ></bean>
+           
+        <bean id="loginAction" class="rsj.admin.web.action.user.LoginAction" scope="prototype"/>
+        <bean id="mainAction" class="rsj.admin.web.action.user.MainAction" scope="prototype"/>
+        <bean id="logoutAction" class="rsj.admin.web.action.user.LogoutAction" scope="prototype"/>
+		<bean id="userAction" class="rsj.admin.web.action.user.UserAction" scope="prototype"/>
+		<bean id="roleAction" class="rsj.admin.web.action.user.RoleAction" scope="prototype"/>
+		<bean id="menuAction" class="rsj.admin.web.action.user.MenuAction" scope="prototype"/>
+		<bean id="permissionAction" class="rsj.admin.web.action.user.PermissionAction" scope="prototype"/>
+		<bean id="permissionItemAction" class="rsj.admin.web.action.user.PermissionItemAction" scope="prototype"/>
+		<bean id="logAction" class="rsj.admin.web.action.log.LogAction" scope="prototype"/>
+        
+		<bean id="archivesAction" class="rsj.admin.web.action.archives.ArchivesAction" scope="prototype"/>
+		<bean id="newsAction" class="rsj.admin.web.action.news.NewsAction" scope="prototype"/>
+		
+		<!-- JSON Action Start -->
+		<bean id="newsListForJsonAction" class="rsj.admin.web.action.news.NewsListForJsonAction" scope="prototype"/>
+		<!-- JSON Action End -->
+        
+		
+</beans>

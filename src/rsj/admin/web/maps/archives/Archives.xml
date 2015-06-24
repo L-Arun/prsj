@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="rsj.admin.web.domain.archives">
+	<class name="Archives" table="admin_archives">
+        <id name="id">
+            <generator class="native"></generator>
+        </id>
+        <property name="number"/>
+        <property name="title"/>
+        <property name="department"/>
+        <property name="createTime" column="create_time" not-null="true" update="false"/>
+        <property name="updateTime" column="update_time" not-null="true"/>
+        <property name="archivesType">
+        	<column name="archives_type" precision="22" scale="0" not-null="true" />
+			<type name="rsj.admin.web.hibernate.usertype.IntegerBeanLabelUserType">
+				<param name="targetClass">
+					rsj.admin.web.enums.ArchivesType
+				</param>
+			</type>
+        </property>
+        <property name="path"/>
+        <property name="isDigital">
+        	<column name="is_digital" precision="22" scale="0" not-null="true" />
+			<type name="rsj.admin.web.hibernate.usertype.IntegerBeanLabelUserType">
+				<param name="targetClass">
+					com.lehecai.core.YesNoStatus
+				</param>
+			</type>
+        </property>
+        <property name="memo" length="4000"/>
+    </class>
+</hibernate-mapping>

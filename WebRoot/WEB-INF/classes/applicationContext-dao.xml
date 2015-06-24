@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  - Application context definition for JPetStore's business layer.
+  - Contains bean references to the transaction manager and to the DAOs in
+  - dataAccessContext-local/jta.xml (see web.xml's "contextConfigLocation").
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xmlns:p="http://www.springframework.org/schema/p"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+			default-autowire="byName">
+		
+		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" 
+			p:driverClassName="${jdbc.driverClassName}" p:url="${jdbc.url}" p:username="${jdbc.username}"
+			p:password="${jdbc.password}" >
+            <property name="validationQuery">
+                <value>SELECT 1</value>
+            </property>
+            <property name="testOnBorrow">
+                <value>true</value>
+            </property>
+		</bean>
+			
+		<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		    <property name="dataSource" ref="dataSource"/>
+		    <property name="mappingResources">
+		      <list>
+		        <value>rsj/admin/web/maps/user/User.xml</value>
+		        <value>rsj/admin/web/maps/user/Role.xml</value>
+		        <value>rsj/admin/web/maps/user/Menu.xml</value>
+		        <value>rsj/admin/web/maps/user/Permission.xml</value>
+		        <value>rsj/admin/web/maps/user/PermissionItem.xml</value>
+		        <value>rsj/admin/web/maps/log/Log.xml</value>
+		        <value>rsj/admin/web/maps/multiconfirm/MulticonfirmConfig.xml</value>
+		      	<value>rsj/admin/web/maps/multiconfirm/MulticonfirmTask.xml</value>
+		      	<value>rsj/admin/web/maps/multiconfirm/MulticonfirmRecord.xml</value>
+		      	
+		      	<value>rsj/admin/web/maps/archives/Archives.xml</value>
+		      	<value>rsj/admin/web/maps/news/News.xml</value>
+		       
+		      </list>
+		    </property>
+		    <property name="hibernateProperties">
+		      <value>
+		        hibernate.dialect=${hibernate.dialect}
+		        hibernate.show_sql=${hibernate.show_sql}
+		        hibernate.query.substitutions=${hibernate.query.substitutions}
+		        <!-- hibernate.hbm2ddl.auto=${hibernate.hbm2ddl.auto} -->
+		      </value>
+		    </property>
+		</bean>
+	    <bean id="userDao" class="rsj.admin.web.dao.impl.user.UserDaoImpl"/>
+	    <bean id="roleDao" class="rsj.admin.web.dao.impl.user.RoleDaoImpl"/>
+	    <bean id="menuDao" class="rsj.admin.web.dao.impl.user.MenuDaoImpl"/>
+	    <bean id="permissionDao" class="rsj.admin.web.dao.impl.user.PermissionDaoImpl"/>
+	    <bean id="permissionItemDao" class="rsj.admin.web.dao.impl.user.PermissionItemDaoImpl"/>
+	    <bean id="logDao" class="rsj.admin.web.dao.impl.log.LogDaoImpl"/>
+	    <bean id="multiconfirmConfigDao" class="rsj.admin.web.dao.impl.multiconfirm.MulticonfirmConfigDaoImpl"/>
+		<bean id="multiconfirmTaskDao" class="rsj.admin.web.dao.impl.multiconfirm.MulticonfirmTaskDaoImpl"/>
+		<bean id="multiconfirmRecordDao" class="rsj.admin.web.dao.impl.multiconfirm.MulticonfirmRecordDaoImpl"/>
+	
+		<bean id="archivesDao" class="rsj.admin.web.dao.impl.archives.ArchivesDaoImpl"/>
+		<bean id="newsDao" class="rsj.admin.web.dao.impl.news.NewsDaoImpl"/>
+</beans>

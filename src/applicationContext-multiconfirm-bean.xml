@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  - Application context definition for JPetStore's business layer.
+  - Contains bean references to the transaction manager and to the DAOs in
+  - dataAccessContext-local/jta.xml (see web.xml's "contextConfigLocation").
+  -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xmlns:p="http://www.springframework.org/schema/p"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+			default-autowire="byName">
+		<bean id="drawResultParam" class="rsj.admin.web.multiconfirm.param.DrawResultParams" />
+	    
+	    <bean id="paramFactory" class="rsj.admin.web.multiconfirm.param.MulticonfirmParamFactory">
+	    	<property name="factoryMap">
+				<map>
+					<entry key="lotteryDraw_update" value-ref="drawResultParam" />
+				</map>
+			</property>
+	    </bean>
+	    
+	    
+		<bean id="drawResultMultiConfirm" class="rsj.admin.web.multiconfirm.confirm.DrawResultConfirm" />
+	    
+	    <bean id="confirmFactory" class="rsj.admin.web.multiconfirm.confirm.MulticonfirmConfirmFactory">
+	    	<property name="factoryMap">
+				<map>
+					<entry key="lotteryDraw_update" value-ref="drawResultMultiConfirm" />
+				</map>
+			</property>
+	    </bean>
+	    
+</beans>
