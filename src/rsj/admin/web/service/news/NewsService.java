@@ -26,6 +26,25 @@ public interface NewsService {
 	List<News> listForJson(NewsType newsType, YesNoStatus isApply, Integer newsSize);
 	/**
 	 * 
+	 * @param newsType
+	 * @param isApply
+	 * @param newsSize
+	 * @param pageBean
+	 * @return
+	 */
+	List<News> listForJson(NewsType newsType, YesNoStatus isApply, PageBean pageBean);
+	/**
+	 * 
+	 * @param newsType
+	 * @param isApply
+	 * @param newsSize
+	 * @param pageBean
+	 * @return
+	 */
+	PageBean getListForJsonPageBean(NewsType newsType, YesNoStatus isApply, PageBean pageBean);
+
+	/**
+	 * 
 	 * @param 
 	 * @return
 	 */
@@ -49,4 +68,14 @@ public interface NewsService {
 	 * @return
 	 */
 	void merge(News news);
+	/**
+	 * 
+	 * 
+	 * @param yisApplyes
+	 * @param isImageNews
+	 * @param newsSize
+	 * @return
+	 */
+	List<News> pictureNewsListForJson(YesNoStatus isApply, YesNoStatus isImageNews,
+			Integer newsSize);
 }

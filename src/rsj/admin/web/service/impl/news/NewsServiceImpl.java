@@ -15,7 +15,7 @@ public class NewsServiceImpl implements NewsService {
 
 	private NewsDao newsDao;
 	
-		public NewsDao getNewsDao() {
+	public NewsDao getNewsDao() {
 		return newsDao;
 	}
 
@@ -65,6 +65,27 @@ public class NewsServiceImpl implements NewsService {
 	public void merge(News news) {
 		// TODO Auto-generated method stub
 		newsDao.merge(news);
+	}
+
+	@Override
+	public List<News> pictureNewsListForJson(YesNoStatus isApply,
+			YesNoStatus isImageNews, Integer newsSize) {
+		// TODO Auto-generated method stub
+		return newsDao.pictureNewsListForJson(isApply, isImageNews, newsSize);
+	}
+
+	@Override
+	public PageBean getListForJsonPageBean(NewsType newsType,
+			YesNoStatus isApply, PageBean pageBean) {
+		// TODO Auto-generated method stub
+		return newsDao.getListForJsonPageBean(newsType, isApply, pageBean);
+	}
+
+	@Override
+	public List<News> listForJson(NewsType newsType, YesNoStatus isApply,
+			PageBean pageBean) {
+		// TODO Auto-generated method stub
+		return newsDao.listForJson(newsType, isApply, pageBean);
 	}
 
 }

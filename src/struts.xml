@@ -130,6 +130,10 @@
 		</action>
 		<action name="newsListForJson" class="newsListForJsonAction">
 		</action>
+		<action name="pictureNewsListForJson" class="pictureNewsListForJsonAction">
+		</action>
+		<action name="firstPageNewsListForJson" class="firstPageNewsListForJsonAction">
+		</action>
 	</package>
 	
 	

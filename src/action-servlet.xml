@@ -31,6 +31,8 @@
 		
 		<!-- JSON Action Start -->
 		<bean id="newsListForJsonAction" class="rsj.admin.web.action.news.NewsListForJsonAction" scope="prototype"/>
+		<bean id="pictureNewsListForJsonAction" class="rsj.admin.web.action.news.PictureNewsListForJsonAction" scope="prototype"/>
+		<bean id="firstPageNewsListForJsonAction" class="rsj.admin.web.action.news.FirstPageNewsListForJsonAction" scope="prototype"/>
 		<!-- JSON Action End -->
         
 		

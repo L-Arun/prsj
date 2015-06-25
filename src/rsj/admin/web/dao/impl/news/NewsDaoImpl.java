@@ -283,6 +283,121 @@ public class NewsDaoImpl extends HibernateDaoSupport implements NewsDao {
 		getHibernateTemplate().merge(news);		
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<News> pictureNewsListForJson(final YesNoStatus isApply,
+			final YesNoStatus isImageNews, final Integer newsSize) {
+		// TODO Auto-generated method stub
+		return (List<News>) getHibernateTemplate().execute(
+				new HibernateCallback() {
+					public Object doInHibernate(Session session)
+							throws HibernateException {
+						StringBuffer hql = new StringBuffer("from News u where 1 = 1");
+
+						if(isApply != null && isApply.getValue() != YesNoStatus.ALL.getValue()){
+							hql.append(" and u.isApply = :isApply");
+						}
+						if(isImageNews != null && isImageNews.getValue() != YesNoStatus.ALL.getValue()){
+							hql.append(" and u.isImageNews = :isImageNews");
+						}
+						hql.append(" order by u.createTime desc");
+						Query query = session.createQuery(hql.toString());
+								
+						if(isApply != null && isApply.getValue() != YesNoStatus.ALL.getValue()){
+							query.setParameter("isApply", isApply);
+						}
+						if(isImageNews != null && isImageNews.getValue() != YesNoStatus.ALL.getValue()){
+							query.setParameter("isImageNews", isImageNews);
+						}
+						if(newsSize != null && newsSize != 0) {
+							query.setMaxResults(newsSize);
+						}
+						
+						return query.list();
+					}
+				});
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public PageBean getListForJsonPageBean(final NewsType newsType,
+			final YesNoStatus isApply, final PageBean pageBean) {
+		// TODO Auto-generated method stub
+		return (PageBean) getHibernateTemplate().execute(
+				new HibernateCallback() {
+					public Object doInHibernate(Session session)
+							throws HibernateException {
+						StringBuffer hql = new StringBuffer("select count(u) from News u where 1 = 1");
+
+						if(newsType != null && newsType.getValue() != NewsType.ALL.getValue()){
+							hql.append(" and u.newsType = :newsType");
+						}
+						if(isApply != null && isApply.getValue() != YesNoStatus.ALL.getValue()){
+							hql.append(" and u.isApply = :isApply");
+						}
+						hql.append(" order by u.createTime desc");
+						Query query = session.createQuery(hql.toString());
+								
+						if(newsType != null && newsType.getValue() != NewsType.ALL.getValue()){
+							query.setParameter("newsType", newsType);
+						}
+						if(isApply != null && isApply.getValue() != YesNoStatus.ALL.getValue()){
+							query.setParameter("isApply", isApply);
+						}
+						if(pageBean.isPageFlag()){
+							int totalCount = ((Long)query.iterate().next()).intValue();
+							pageBean.setCount(totalCount);
+							int pageCount = 0;//页数
+							if(pageBean.getPageSize() != 0) {
+					            pageCount = totalCount / pageBean.getPageSize();
+					            if(totalCount % pageBean.getPageSize() != 0) {
+					                pageCount ++;
+					            }
+					        }
+							pageBean.setPageCount(pageCount);
+						}
+						return pageBean;
+					}
+				});
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<News> listForJson(final NewsType newsType, final YesNoStatus isApply,
+			final PageBean pageBean) {
+		// TODO Auto-generated method stub
+		return (List<News>) getHibernateTemplate().execute(
+				new HibernateCallback() {
+					public Object doInHibernate(Session session)
+							throws HibernateException {
+						StringBuffer hql = new StringBuffer("from News u where 1 = 1");
+
+						if(newsType != null && newsType.getValue() != NewsType.ALL.getValue()){
+							hql.append(" and u.newsType = :newsType");
+						}
+						if(isApply != null && isApply.getValue() != YesNoStatus.ALL.getValue()){
+							hql.append(" and u.isApply = :isApply");
+						}
+						hql.append(" order by u.createTime desc");
+						Query query = session.createQuery(hql.toString());
+								
+						if(newsType != null && newsType.getValue() != NewsType.ALL.getValue()){
+							query.setParameter("newsType", newsType);
+						}
+						if(isApply != null && isApply.getValue() != YesNoStatus.ALL.getValue()){
+							query.setParameter("isApply", isApply);
+						}
+						if(pageBean.isPageFlag()){
+							if(pageBean.getPageSize() != 0){
+								query.setFirstResult((pageBean.getPage() - 1) * pageBean.getPageSize());
+								query.setMaxResults(pageBean.getPageSize());
+							}
+						}
+						return query.list();
+					}
+				});
+	}
+
 }
 
 
