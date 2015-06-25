@@ -16,6 +16,7 @@ import rsj.admin.web.domain.news.News;
 import rsj.admin.web.enums.NewsType;
 import rsj.admin.web.service.news.NewsService;
 
+import com.lehecai.core.YesNoStatus;
 import com.opensymphony.xwork2.Action;
 
 public class NewsListForJsonAction extends BaseAction {
@@ -26,6 +27,7 @@ public class NewsListForJsonAction extends BaseAction {
 	
 	private Integer listTypeValue;
 	private Integer pageNumber;
+	private Integer newsSize;
 	
 	public String handle() {
 		logger.info("进入json查询新闻列表");
@@ -36,7 +38,7 @@ public class NewsListForJsonAction extends BaseAction {
 			HttpServletResponse response = ServletActionContext.getResponse();
 			JSONObject json = new JSONObject();
 			NewsType newsType = NewsType.getItem(listTypeValue);
-			newses = newsService.listForJson(null, newsType, null, null, null, null, null, null, null, null, null, null, null);
+			newses = newsService.listForJson(newsType, YesNoStatus.YES, newsSize);
 			if (newses != null && newses.size() > 0) {
 				json.put("code", rc);
 				json.put("msg", msg);
@@ -79,6 +81,14 @@ public class NewsListForJsonAction extends BaseAction {
 
 	public void setListTypeValue(Integer listTypeValue) {
 		this.listTypeValue = listTypeValue;
+	}
+
+	public Integer getNewsSize() {
+		return newsSize;
+	}
+
+	public void setNewsSize(Integer newsSize) {
+		this.newsSize = newsSize;
 	}
 
 	

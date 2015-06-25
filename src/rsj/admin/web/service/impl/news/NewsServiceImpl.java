@@ -34,13 +34,9 @@ public class NewsServiceImpl implements NewsService {
 	}
 	
 	@Override
-	public List<News> listForJson(String title, NewsType newsType,
-			String content, String username, String updateUsername,
-			Date beginCreateTime, Date endCreateTime, Date beginUpdateTime,
-			Date endUpdateTime, String imagePath, YesNoStatus isApply,
-			YesNoStatus isImageNews, String memo) {
+	public List<News> listForJson(NewsType newsType, YesNoStatus isApply, Integer newsSize) {
 		// TODO Auto-generated method stub
-		return newsDao.listForJson(title, newsType, content, username, updateUsername, beginCreateTime, endCreateTime, beginUpdateTime, endUpdateTime, imagePath, isApply, isImageNews, memo);
+		return newsDao.listForJson(newsType, isApply, newsSize);
 	}
 
 	@Override

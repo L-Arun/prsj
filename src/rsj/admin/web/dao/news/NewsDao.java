@@ -23,8 +23,7 @@ public interface NewsDao {
 	 * @param 
 	 * @return
 	 */
-	List<News> listForJson(String title, NewsType newsType, String content, String username, String updateUsername, Date beginCreateTime, 
-			Date endCreateTime, Date beginUpdateTime, Date endUpdateTime, String imagePath, YesNoStatus isApply, YesNoStatus isImageNews, String memo);
+	List<News> listForJson(NewsType newsType, YesNoStatus isApply, Integer newsSize);
 	/**
 	 * 多条件查询分页信息
 	 * @param number 文号

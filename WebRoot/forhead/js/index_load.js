@@ -1,19 +1,36 @@
 // JavaScript Document
+//政务动态
 var url = "/prsj/news/newsListForJson.do";
 $.post(url,
 	{
-		"listTypeValue" : 1,
+		"listTypeValue" : 2,
+		"newsSize" : 6,
 	},
 	function(object){
 		if (object.code == 0) {
 			var data = object.data;
 			var str = "<ul>";
-			for (var i = 0; i < data.length && i<6; i++) {
+			for (var i = 0; i < data.length; i = i + 1) {
     			str += "<li><a href='/prsj/news/newsForJson.do?newsId=" + data[i].key + "'>" + data[i].name + "</a></li>";
 			}
 			str = str + "</ul>";
 			$("#xinxi_zhengwudongtai").append(str);
-			alert(data.toString());
-			alert("aa");
 		}
 	},"json");
+//政策法规
+$.post(url,
+		{
+			"listTypeValue" : 1,
+			"newsSize" : 6,
+		},
+		function(object){
+			if (object.code == 0) {
+				var data = object.data;
+				var str = "<ul>";
+				for (var i = 0; i < data.length; i = i + 1) {
+	    			str += "<li><a href='/prsj/news/newsForJson.do?newsId=" + data[i].key + "'>" + data[i].name + "</a></li>";
+				}
+				str = str + "</ul>";
+				$("#xinxi_zhengcefagui").append(str);
+			}
+		},"json");

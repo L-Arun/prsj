@@ -124,97 +124,31 @@ public class NewsDaoImpl extends HibernateDaoSupport implements NewsDao {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	public List<News> listForJson(final String title,final NewsType newsType, final String content, final String username, 
-			final String updateUsername, final Date beginCreateTime, final Date endCreateTime, final Date beginUpdateTime,
-			final Date endUpdateTime, final String imagePath, final YesNoStatus isApply, final YesNoStatus isImageNews, final String memo) {
+	public List<News> listForJson(final NewsType newsType, final YesNoStatus isApply, final Integer newsSize) {
 		return (List<News>) getHibernateTemplate().execute(
 				new HibernateCallback() {
 					public Object doInHibernate(Session session)
 							throws HibernateException {
 						StringBuffer hql = new StringBuffer("from News u where 1 = 1");
 
-						if(title != null && !"".equals(title)){
-							hql.append(" and u.title like :title");
-						}
 						if(newsType != null && newsType.getValue() != NewsType.ALL.getValue()){
 							hql.append(" and u.newsType = :newsType");
-						}
-						if(content != null && !"".equals(content)){
-							hql.append(" and u.content like :content");
-						}
-						if(username != null && !"".equals(username)){
-							hql.append(" and u.username like :username");
-						}
-						if(updateUsername != null && !"".equals(updateUsername)){
-							hql.append(" and u.updateUsername like :updateUsername");
-						}
-						if(beginCreateTime != null){
-							hql.append(" and u.createTime >= :beginCreateTime");
-						}
-						if(endCreateTime != null){
-							hql.append(" and u.createTime <= :endCreateTime");
-						}
-						if(beginUpdateTime != null){
-							hql.append(" and u.updateTime >= :beginUpdateTime");
-						}
-						if(endUpdateTime != null){
-							hql.append(" and u.updateTime <= :endUpdateTime");
-						}
-						if(imagePath != null && !"".equals(imagePath)){
-							hql.append(" and u.imagePath like :imagePath");
 						}
 						if(isApply != null && isApply.getValue() != YesNoStatus.ALL.getValue()){
 							hql.append(" and u.isApply = :isApply");
 						}
-						if(isImageNews != null && isImageNews.getValue() != YesNoStatus.ALL.getValue()){
-							hql.append(" and u.isImageNews = :isImageNews");
-						}
-						if(memo != null && !"".equals(memo)){
-							hql.append(" and u.memo like :memo");
-						}
 						hql.append(" order by u.createTime desc");
 						Query query = session.createQuery(hql.toString());
 								
-						if(title != null && !"".equals(title)){
-							query.setParameter("title", "%" + title + "%");
-						}
 						if(newsType != null && newsType.getValue() != NewsType.ALL.getValue()){
 							query.setParameter("newsType", newsType);
-						}
-						if(content != null && !"".equals(content)){
-							query.setParameter("content", "%" + content + "%");
-						}
-						if(username != null && !"".equals(username)){
-							query.setParameter("username", "%" + username + "%");
-						}
-						if(updateUsername != null && !"".equals(updateUsername)){
-							query.setParameter("updateUsername", "%" + updateUsername + "%");
-						}
-						if(beginCreateTime != null){
-							query.setParameter("beginCreateTime", beginCreateTime);
-						}
-						if(endCreateTime != null){
-							query.setParameter("endCreateTime", endCreateTime);
-						}
-						if(beginUpdateTime != null){
-							query.setParameter("beginUpdateTime", beginUpdateTime);
-						}
-						if(endUpdateTime != null){
-							query.setParameter("endUpdateTime", endUpdateTime);
-						}
-						if(imagePath != null && !"".equals(imagePath)){
-							query.setParameter("imagePath", "%" + imagePath + "%");
 						}
 						if(isApply != null && isApply.getValue() != YesNoStatus.ALL.getValue()){
 							query.setParameter("isApply", isApply);
 						}
-						if(isImageNews != null && isImageNews.getValue() != YesNoStatus.ALL.getValue()){
-							query.setParameter("isImageNews", isImageNews);
+						if(newsSize != null && newsSize != 0) {
+							query.setMaxResults(newsSize);
 						}
-						if(memo != null && !"".equals(memo)){
-							query.setParameter("memo", "%" + memo + "%");
-						}
-						
 						return query.list();
 					}
 				});
