@@ -75,7 +75,7 @@
   	
   	<div id="main">
  		<c:choose>
-   			<c:when test="${archives.id == null}">
+   			<c:when test="${news.id == null}">
    			<div class="titlediv">您所在的位置：新闻管理->新闻管理->新闻添加</div>
    			</c:when>
    			<c:otherwise>
@@ -95,7 +95,7 @@
 		    			<tr id="libtn"><td class="alignright"><span>编码：</span></td><td class="alignleft">${news.id}</td></tr>
 		    			</c:otherwise>
 		    		</c:choose>	
-		    		<tr><td class="alignright"><span class="red spanmargin">*</span><span>标题：</span></td><td class="alignleft"><input type="text" name="news.title" value="${news.title}"  maxlength="255"/></td></tr>
+		    		<tr><td class="alignright" ><span class="red spanmargin">*</span><span>标题：</span></td><td class="alignleft"><input type="text" name="news.title" value="${news.title}"  maxlength="255"/></td></tr>
 		    		<tr>
 		    			<td class="alignright">
 		    				<span class="red spanmargin">*</span><span>新闻类型：</span>
@@ -122,9 +122,17 @@
 		    			</td>
 		    			<td class="alignleft"><s:select name="isImageNewsValue" list="yesNoStatuses" listKey="value" listValue="name"></s:select></td>
 		    		</tr>
-		    		<tr><td class="alignright"><span>是否通过审核：</span></td><td class="alignleft">${news.isApply.name}</td></tr>
+		    		<c:choose>
+		    			<c:when test="${news.id == null}">
+		    			</c:when>
+		    			<c:otherwise>
+			    		<tr><td class="alignright"><span>是否通过审核：</span></td><td class="alignleft">${news.isApply.name}</td></tr>
+			    		<tr><td class="alignright"><span>浏览次数：</span></td><td class="alignleft">${news.viewTimes}</td></tr>
+		    			</c:otherwise>
+		    		</c:choose>
 		    		<tr><td colspan="2">
 		    			<input id="imagePath" name="news.imagePath" value="${news.imagePath}" type="hidden"/>
+		    			<input name="news.viewTimes" value="${news.viewTimes}" type="hidden"/>
 	    				<textarea name="news.content"  id="myEditor">${news.content}</textarea>  
 						<script type="text/javascript"> 
 						    var editor = new UE.ui.Editor(); 
@@ -135,7 +143,7 @@
 						    //UE.getEditor(’myEditor’) 
 						</script> 
 	    			</td></tr>
-		    		<tr><td class="alignright"><span>备注：</span></td><td class="alignleft"><textarea name="news.memo" cols="30" rows="5">${news.memo}</textarea></td></tr>
+		    		<tr><td class="alignright"><span>备注：</span></td><td class="alignleft"><textarea name="news.memo" cols="60" rows="5">${news.memo}</textarea></td></tr>
 	    			
 	    		</table>
     		</div>

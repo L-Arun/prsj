@@ -24,13 +24,13 @@ public class NewsServiceImpl implements NewsService {
 	}
 
 	@Override
-	public List<News> list(String title, NewsType newsType, String content,
+	public List<News> list(Long newsId, String title, NewsType newsType, String content,
 			String username, String updateUsername, Date beginCreateTime,
 			Date endCreateTime, Date beginUpdateTime, Date endUpdateTime,
 			String imagePath, YesNoStatus isApply, YesNoStatus isImageNews, String memo,
 			PageBean pageBean) {
 		// TODO Auto-generated method stub
-		return newsDao.list(title, newsType, content, username, updateUsername, beginCreateTime, endCreateTime, beginUpdateTime, endUpdateTime, imagePath, isApply, isImageNews, memo, pageBean);
+		return newsDao.list(newsId, title, newsType, content, username, updateUsername, beginCreateTime, endCreateTime, beginUpdateTime, endUpdateTime, imagePath, isApply, isImageNews, memo, pageBean);
 	}
 	
 	@Override
@@ -40,13 +40,13 @@ public class NewsServiceImpl implements NewsService {
 	}
 
 	@Override
-	public PageBean getPageBean(String title, NewsType newsType,
+	public PageBean getPageBean(Long newsId, String title, NewsType newsType,
 			String content, String username, String updateUsername,
 			Date beginCreateTime, Date endCreateTime, Date beginUpdateTime,
 			Date endUpdateTime, String imagePath, YesNoStatus isApply, YesNoStatus isImageNews,
 			String memo, PageBean pageBean) {
 		// TODO Auto-generated method stub
-		return newsDao.getPageBean(title, newsType, content, username, updateUsername, beginCreateTime, endCreateTime, beginUpdateTime, endUpdateTime, imagePath, isApply, isImageNews, memo, pageBean);
+		return newsDao.getPageBean(newsId, title, newsType, content, username, updateUsername, beginCreateTime, endCreateTime, beginUpdateTime, endUpdateTime, imagePath, isApply, isImageNews, memo, pageBean);
 	}
 
 	@Override

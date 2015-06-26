@@ -45,7 +45,7 @@ public class NewsListForJsonAction extends BaseAction {
 				JSONArray jsonArray = new JSONArray();
 				for (News news : newses) {
 					JSONObject j = new JSONObject();
-					j.put("key", news.getId());
+					j.put("key", news.getNewsId());
 					j.put("name", news.getTitle());
 					jsonArray.add(j);
 				}

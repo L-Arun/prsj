@@ -13,9 +13,10 @@ public class News implements Serializable {
 	 * 各类新闻
 	 */
 	private static final long serialVersionUID = -6100412628585480536L;
-	private Long id;
+	private Long newsId;
 	private String title;
 	private NewsType newsType;
+	private Long viewTimes;
 	private String content;
 	private String username;
 	private String updateUsername;
@@ -26,11 +27,11 @@ public class News implements Serializable {
 	private YesNoStatus isImageNews;
 	private String memo;
 	
-	public Long getId() {
-		return id;
+	public Long getNewsId() {
+		return newsId;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setNewsId(Long newsId) {
+		this.newsId = newsId;
 	}
 	public String getTitle() {
 		return title;
@@ -85,6 +86,12 @@ public class News implements Serializable {
 	}
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
+	}
+	public Long getViewTimes() {
+		return viewTimes;
+	}
+	public void setViewTimes(Long viewTimes) {
+		this.viewTimes = viewTimes;
 	}
 	public YesNoStatus getIsApply() {
 		return isApply;

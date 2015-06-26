@@ -40,7 +40,7 @@ public class PictureNewsListForJsonAction extends BaseAction {
 			JSONArray jsonArray = new JSONArray();
 			for (News news : newses) {
 				JSONObject j = new JSONObject();
-				j.put("key", news.getId());
+				j.put("key", news.getNewsId());
 				j.put("name", news.getTitle());
 				j.put("imagePath", news.getImagePath());
 				jsonArray.add(j);

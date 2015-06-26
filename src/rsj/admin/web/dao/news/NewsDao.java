@@ -16,7 +16,7 @@ public interface NewsDao {
 	 * @param 
 	 * @return
 	 */
-	List<News> list(String title, NewsType newsType, String content, String username, String updateUsername, Date beginCreateTime, 
+	List<News> list(Long newsId, String title, NewsType newsType, String content, String username, String updateUsername, Date beginCreateTime, 
 			Date endCreateTime, Date beginUpdateTime, Date endUpdateTime, String imagePath, YesNoStatus isApply, YesNoStatus isImageNews, String memo, PageBean pageBean);
 	/**
 	 * 
@@ -40,7 +40,7 @@ public interface NewsDao {
 	 * @param pageBean
 	 * @return
 	 */
-	PageBean getPageBean(String title, NewsType newsType, String content, String username, String updateUsername, Date beginCreateTime, 
+	PageBean getPageBean(Long newsId, String title, NewsType newsType, String content, String username, String updateUsername, Date beginCreateTime, 
 			Date endCreateTime, Date beginUpdateTime, Date endUpdateTime, String imagePath, YesNoStatus isApply, YesNoStatus isImageNews, String memo, PageBean pageBean);
 	/**
 	 * 

@@ -31,7 +31,9 @@ public class NewsAction extends BaseAction {
 	
 	private List<News> newses;
 	
+	private Long newsId;
 	private String title;
+	private String username;
 	private String content;
 	private Date beginCreateTime;
 	private Date endCreateTime;
@@ -45,38 +47,15 @@ public class NewsAction extends BaseAction {
 	
 	public String handle() {
 		logger.info("进入查询新闻列表");
-		
 		if (beginCreateTime == null) {
 			beginCreateTime = getDefaultQueryBeginDate();
 		}
-		HttpServletRequest request = ServletActionContext.getRequest();
-		
-		YesNoStatus isApply = null;
-		NewsType newsType = null;
-		if(isApplyValue != null && isApplyValue != YesNoStatus.ALL.getValue()){
-			isApply = YesNoStatus.getItem(isApplyValue);
-		}
-		YesNoStatus isImageNews = null;
-		if(isImageNewsValue != null && isImageNewsValue != YesNoStatus.ALL.getValue()){
-			isImageNews = YesNoStatus.getItem(isImageNewsValue);
-		}
-		if(newsTypeValue != null && newsTypeValue != NewsType.ALL.getValue()){
-			newsType = NewsType.getItem(newsTypeValue);
-		}
-		newses = newsService.list(title, newsType, content, null, null, beginCreateTime, endCreateTime, beginUpdateTime, endUpdateTime, null, isApply, isImageNews, null, super.getPageBean());
-		PageBean pageBean = newsService.getPageBean(title, newsType, content, null, null, beginCreateTime, endCreateTime, beginUpdateTime, endUpdateTime, null, isApply, isImageNews, null, super.getPageBean());
-		super.setPageString(PageUtil.getPageString(request, pageBean));
-		logger.info("结束查询新闻列表");
-		
-		return "list";
+		return query();
 	}
 	
 	public String query() {
 		logger.info("进入查询新闻列表");
 		
-		if (beginCreateTime == null) {
-			beginCreateTime = getDefaultQueryBeginDate();
-		}
 		HttpServletRequest request = ServletActionContext.getRequest();
 		YesNoStatus isApply = null;
 		NewsType newsType = null;
@@ -90,8 +69,8 @@ public class NewsAction extends BaseAction {
 		if(newsTypeValue != null && newsTypeValue != NewsType.ALL.getValue()){
 			newsType = NewsType.getItem(newsTypeValue);
 		}
-		newses = newsService.list(title, newsType, content, null, null, beginCreateTime, endCreateTime, beginUpdateTime, endUpdateTime, null, isApply, isImageNews, null, super.getPageBean());
-		PageBean pageBean = newsService.getPageBean(title, newsType, content, null, null, beginCreateTime, endCreateTime, beginUpdateTime, endUpdateTime, null, isApply, isImageNews, null, super.getPageBean());
+		newses = newsService.list(newsId, title, newsType, content, username, null, beginCreateTime, endCreateTime, beginUpdateTime, endUpdateTime, null, isApply, isImageNews, null, super.getPageBean());
+		PageBean pageBean = newsService.getPageBean(newsId, title, newsType, content, username, null, beginCreateTime, endCreateTime, beginUpdateTime, endUpdateTime, null, isApply, isImageNews, null, super.getPageBean());
 		super.setPageString(PageUtil.getPageString(request, pageBean));
 		logger.info("结束查询新闻列表");
 		
@@ -100,8 +79,8 @@ public class NewsAction extends BaseAction {
 	
 	public String view(){
 		logger.info("进入查询新闻信息");
-		if(news != null && news.getId() != null){
-			news = newsService.get(news.getId());
+		if(news != null && news.getNewsId() != null){
+			news = newsService.get(news.getNewsId());
 		}else{
 			return "failure";
 		}
@@ -114,23 +93,28 @@ public class NewsAction extends BaseAction {
 			return "failure";
 		}
 		UserSessionBean userSessionBean = (UserSessionBean) super.getSession().get(Global.USER_SESSION);
-		String username = userSessionBean.getUser().getUserName();
+		String tmpUsername = userSessionBean.getUser().getUserName();
 		
 		if (newsTypeValue != null && newsTypeValue != 0) {
 			news.setNewsType(NewsType.getItem(newsTypeValue));
 		}
 		if (isImageNewsValue != null && isImageNewsValue != YesNoStatus.ALL.getValue()) {
 			news.setIsImageNews(YesNoStatus.getItem(isImageNewsValue));
+			if (news.getIsImageNews().getValue() == YesNoStatus.YES.getValue()) {
+				if(news.getImagePath() == null || "".equals(news.getImagePath())){
+					news.setIsImageNews(YesNoStatus.NO);
+				}
+			}
 		}
 		news.setIsApply(YesNoStatus.NO);
-		if(news.getId() == null || news.getId() == 0) {
-			news.setUsername(username);
+		if(news.getNewsId() == null || news.getNewsId() == 0) {
+			news.setUsername(tmpUsername);
 			news.setCreateTime(new Date());
-			news.setUpdateUsername(username);
+			news.setUpdateUsername(tmpUsername);
 			news.setUpdateTime(new Date());
 			newsService.save(news);
 		} else{
-			news.setUpdateUsername(username);
+			news.setUpdateUsername(tmpUsername);
 			news.setUpdateTime(new Date());
 			newsService.merge(news);
 		}
@@ -139,8 +123,8 @@ public class NewsAction extends BaseAction {
 	}
 	public String input(){
 		logger.info("进入输入新闻信息");
-		if (news != null && news.getId() != null) {
-			news = newsService.get(news.getId());
+		if (news != null && news.getNewsId() != null) {
+			news = newsService.get(news.getNewsId());
 			isApplyValue = news.getIsApply().getValue();
 			newsTypeValue = news.getNewsType().getValue();
 		}
@@ -280,12 +264,36 @@ public class NewsAction extends BaseAction {
 		this.isImageNewsValue = isImageNewsValue;
 	}
 
+	public List<NewsType> getNewsTypesQuery() {
+		return NewsType.getItemsForQuery();
+	}
+	
+	public List<YesNoStatus> getYesNoStatusQuery() {
+		return YesNoStatus.getItemsForQuery();
+	}
+	
 	public List<NewsType> getNewsTypes() {
 		return NewsType.getItems();
 	}
 	
 	public List<YesNoStatus> getYesNoStatus() {
 		return YesNoStatus.getItems();
+	}
+
+	public Long getNewsId() {
+		return newsId;
+	}
+
+	public void setNewsId(Long newsId) {
+		this.newsId = newsId;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 }

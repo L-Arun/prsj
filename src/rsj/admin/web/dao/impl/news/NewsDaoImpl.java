@@ -20,7 +20,7 @@ public class NewsDaoImpl extends HibernateDaoSupport implements NewsDao {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	public List<News> list(final String title,final NewsType newsType, final String content, final String username, 
+	public List<News> list(final Long newsId, final String title,final NewsType newsType, final String content, final String username, 
 			final String updateUsername, final Date beginCreateTime, final Date endCreateTime, final Date beginUpdateTime,
 			final Date endUpdateTime, final String imagePath, final YesNoStatus isApply, final YesNoStatus isImageNews, final String memo, final PageBean pageBean) {
 		return (List<News>) getHibernateTemplate().execute(
@@ -29,6 +29,9 @@ public class NewsDaoImpl extends HibernateDaoSupport implements NewsDao {
 							throws HibernateException {
 						StringBuffer hql = new StringBuffer("from News u where 1 = 1");
 
+						if(newsId != null && newsId != 0){
+							hql.append(" and u.newsId = :newsId");
+						}
 						if(title != null && !"".equals(title)){
 							hql.append(" and u.title like :title");
 						}
@@ -70,7 +73,10 @@ public class NewsDaoImpl extends HibernateDaoSupport implements NewsDao {
 						}
 						hql.append(" order by u.createTime desc");
 						Query query = session.createQuery(hql.toString());
-								
+						
+						if(newsId != null && newsId != 0){
+							query.setParameter("newsId", newsId);
+						}
 						if(title != null && !"".equals(title)){
 							query.setParameter("title", "%" + title + "%");
 						}
@@ -131,6 +137,7 @@ public class NewsDaoImpl extends HibernateDaoSupport implements NewsDao {
 							throws HibernateException {
 						StringBuffer hql = new StringBuffer("from News u where 1 = 1");
 
+						
 						if(newsType != null && newsType.getValue() != NewsType.ALL.getValue()){
 							hql.append(" and u.newsType = :newsType");
 						}
@@ -156,7 +163,7 @@ public class NewsDaoImpl extends HibernateDaoSupport implements NewsDao {
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
-	public PageBean getPageBean(final String title, final NewsType newsType,
+	public PageBean getPageBean(final Long newsId, final String title, final NewsType newsType,
 			final String content, final String username, final String updateUsername, final Date beginCreateTime, 
 			final Date endCreateTime, final Date beginUpdateTime, final Date endUpdateTime, final String imagePath,
 			final YesNoStatus isApply,final YesNoStatus isImageNews, final String memo, final PageBean pageBean) {
@@ -167,6 +174,9 @@ public class NewsDaoImpl extends HibernateDaoSupport implements NewsDao {
 							throws HibernateException {
 						StringBuffer hql = new StringBuffer("select count(u) from News u where 1 = 1");
 
+						if(newsId != null && newsId != 0){
+							hql.append(" and u.newsId = :newsId");
+						}
 						if(title != null && !"".equals(title)){
 							hql.append(" and u.title like :title");
 						}
@@ -209,6 +219,9 @@ public class NewsDaoImpl extends HibernateDaoSupport implements NewsDao {
 						hql.append(" order by u.createTime desc");
 						Query query = session.createQuery(hql.toString());
 								
+						if(newsId != null && newsId != 0){
+							query.setParameter("newsId", newsId);
+						}
 						if(title != null && !"".equals(title)){
 							query.setParameter("title", "%" + title + "%");
 						}
