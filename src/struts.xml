@@ -134,6 +134,10 @@
 		</action>
 		<action name="firstPageNewsListForJson" class="firstPageNewsListForJsonAction">
 		</action>
+		<action name="hotNewsListForJson" class="hotNewsListForJsonAction">
+		</action>
+		<action name="newsForJson" class="newsForJsonAction">
+		</action>
 	</package>
 	
 	

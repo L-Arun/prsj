@@ -33,7 +33,8 @@
 		<bean id="newsListForJsonAction" class="rsj.admin.web.action.news.NewsListForJsonAction" scope="prototype"/>
 		<bean id="pictureNewsListForJsonAction" class="rsj.admin.web.action.news.PictureNewsListForJsonAction" scope="prototype"/>
 		<bean id="firstPageNewsListForJsonAction" class="rsj.admin.web.action.news.FirstPageNewsListForJsonAction" scope="prototype"/>
+		<bean id="hotNewsListForJsonAction" class="rsj.admin.web.action.news.HotNewsListForJsonAction" scope="prototype"/>
+		<bean id="newsForJsonAction" class="rsj.admin.web.action.news.NewsForJsonAction" scope="prototype"/>
 		<!-- JSON Action End -->
-        
 		
 </beans>

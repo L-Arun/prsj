@@ -411,6 +411,39 @@ public class NewsDaoImpl extends HibernateDaoSupport implements NewsDao {
 				});
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	public List<News> hotNewsListForJson(final YesNoStatus isApply, final Integer newsSize,
+			final String order) {
+		// TODO Auto-generated method stub
+		return (List<News>) getHibernateTemplate().execute(
+				new HibernateCallback() {
+					public Object doInHibernate(Session session)
+							throws HibernateException {
+						StringBuffer hql = new StringBuffer("from News u where 1 = 1");
+
+						if(isApply != null && isApply.getValue() != YesNoStatus.ALL.getValue()){
+							hql.append(" and u.isApply = :isApply");
+						}
+						if (order != null && !"".equals(order)) {
+							
+							hql.append(" order by u." + order + " desc");
+						} else {
+							hql.append(" order by u.createTime desc");
+						}
+						Query query = session.createQuery(hql.toString());
+								
+						if(isApply != null && isApply.getValue() != YesNoStatus.ALL.getValue()){
+							query.setParameter("isApply", isApply);
+						}
+						if(newsSize != null && newsSize != 0) {
+							query.setMaxResults(newsSize);
+						}
+						return query.list();
+					}
+				});
+	}
+
 }
 
 

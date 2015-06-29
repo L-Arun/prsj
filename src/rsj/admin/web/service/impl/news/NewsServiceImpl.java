@@ -88,4 +88,11 @@ public class NewsServiceImpl implements NewsService {
 		return newsDao.listForJson(newsType, isApply, pageBean);
 	}
 
+	@Override
+	public List<News> hotNewsListForJson(YesNoStatus isApply, Integer newsSize,
+			String order) {
+		// TODO Auto-generated method stub
+		return newsDao.hotNewsListForJson(isApply, newsSize, order);
+	}
+
 }

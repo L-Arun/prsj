@@ -78,4 +78,13 @@ public interface NewsService {
 	 */
 	List<News> pictureNewsListForJson(YesNoStatus isApply, YesNoStatus isImageNews,
 			Integer newsSize);
+	/**
+	 * 
+	 * @param yes
+	 * @param newsSize
+	 * @param oRDER_BY_VIEW_TIMES
+	 * @return
+	 */
+	List<News> hotNewsListForJson(YesNoStatus isApply, Integer newsSize,
+			String order);
 }

@@ -13,47 +13,45 @@ import org.slf4j.LoggerFactory;
 
 import rsj.admin.web.action.BaseAction;
 import rsj.admin.web.domain.news.News;
-import rsj.admin.web.enums.NewsType;
 import rsj.admin.web.service.news.NewsService;
 
 import com.lehecai.core.YesNoStatus;
 import com.opensymphony.xwork2.Action;
 
-public class FirstPageNewsListForJsonAction extends BaseAction {
+public class HotNewsListForJsonAction extends BaseAction {
 	private static final long serialVersionUID = 2436161530465382824L;
-	private Logger logger = LoggerFactory.getLogger(FirstPageNewsListForJsonAction.class);
+	private Logger logger = LoggerFactory.getLogger(HotNewsListForJsonAction.class);
+	
+	private String ORDER_BY_VIEW_TIMES = "viewTimes";
 	
 	private NewsService newsService;
 	
-	private Integer listTypeValue;
 	private Integer newsSize;
 	
 	public String handle() {
-		logger.info("进入json查询新闻列表");
+		logger.info("进入json查询热点新闻列表");
 		int rc = 0;
 		String msg = "";
 		List<News> newses = null;
-		NewsType newsType = null;
-		if (listTypeValue != null && listTypeValue != NewsType.ALL.getValue()) {
-			newsType = NewsType.getItem(listTypeValue);
-		}
 		HttpServletResponse response = ServletActionContext.getResponse();
+		
 		JSONObject json = new JSONObject();
-		newses = newsService.listForJson(newsType, YesNoStatus.YES, newsSize);
-		if (newses != null && newses.size() > 0) {
-			json.put("code", rc);
-			json.put("msg", msg);
-			JSONArray jsonArray = new JSONArray();
-			for (News news : newses) {
-				JSONObject j = new JSONObject();
-				j.put("key", news.getNewsId());
-				j.put("name", news.getTitle());
-				jsonArray.add(j);
+		newses = newsService.hotNewsListForJson(YesNoStatus.YES, newsSize, ORDER_BY_VIEW_TIMES);
+			if (newses != null && newses.size() > 0) {
+				json.put("code", rc);
+				json.put("msg", msg);
+				JSONArray jsonArray = new JSONArray();
+				for (News news : newses) {
+					JSONObject j = new JSONObject();
+					j.put("key", news.getNewsId());
+					j.put("name", news.getTitle());
+					jsonArray.add(j);
+				}
+				json.put("data", jsonArray.toString());
+				writeRs(response, json);
+				
 			}
-			json.put("data", jsonArray.toString());
-			writeRs(response, json);
-		}
-		logger.info("结束json查询新闻列表");
+		logger.info("结束json查询热点新闻列表");
 		return Action.NONE;
 		
 	}
@@ -64,14 +62,6 @@ public class FirstPageNewsListForJsonAction extends BaseAction {
 
 	public void setNewsService(NewsService newsService) {
 		this.newsService = newsService;
-	}
-
-	public Integer getListTypeValue() {
-		return listTypeValue;
-	}
-
-	public void setListTypeValue(Integer listTypeValue) {
-		this.listTypeValue = listTypeValue;
 	}
 
 	public Integer getNewsSize() {

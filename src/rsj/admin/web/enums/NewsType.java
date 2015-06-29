@@ -50,14 +50,17 @@ public class NewsType extends IntegerBeanLabelItem{
 	public final static NewsType ALL = new NewsType("全部", -1,true);
 	
 	public final static NewsType ZHENG_CE = new NewsType("政策法规", 1);
-	public final static NewsType ZHENG_WU = new NewsType("政务动态", 2);
+	public final static NewsType ZHENG_WU = new NewsType("政务信息", 2);
 	public final static NewsType JIU_YE = new NewsType("就业创业", 3);
 	public final static NewsType SHE_BAO = new NewsType("社会保障", 4);
 	public final static NewsType REN_SHI = new NewsType("人事人才", 5);
 	public final static NewsType ZHONG_CAI = new NewsType("仲裁监察", 6);
 	public final static NewsType TONG_ZHI = new NewsType("通知公告", 7);
 	public final static NewsType JI_GOU = new NewsType("机构设置", 8);
-	public final static NewsType QI_TA = new NewsType("其他", 9);
+	public final static NewsType ZHAO_PIN = new NewsType("招聘信息", 9);
+	public final static NewsType WEN_DA = new NewsType("政策问答", 10);
+	public final static NewsType XIA_ZAI = new NewsType("资料下载", 11);
+	public final static NewsType QI_TA = new NewsType("其他", 99);
 	
 	
 }

@@ -89,4 +89,13 @@ public interface NewsDao {
 	 */
 	List<News> listForJson(NewsType newsType, YesNoStatus isApply,
 			PageBean pageBean);
+	/**
+	 * 
+	 * @param isApply
+	 * @param newsSize
+	 * @param order
+	 * @return
+	 */
+	List<News> hotNewsListForJson(YesNoStatus isApply, Integer newsSize,
+			String order);
 }
