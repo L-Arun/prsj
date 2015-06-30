@@ -207,7 +207,7 @@ $.post(url,
 				$("#xinxi_zhengcewenda").append(str);
 			}
 		},"json");
-//机构设置
+//招聘信息
 $.post(url,
 		{
 			"listTypeValue" : NEWS_TYPE_ZHAO_PIN,

@@ -45,6 +45,7 @@
 		      	
 		      	<value>rsj/admin/web/maps/archives/Archives.xml</value>
 		      	<value>rsj/admin/web/maps/news/News.xml</value>
+		      	<value>rsj/admin/web/maps/report/Report.xml</value>
 		       
 		      </list>
 		    </property>
@@ -69,4 +70,5 @@
 	
 		<bean id="archivesDao" class="rsj.admin.web.dao.impl.archives.ArchivesDaoImpl"/>
 		<bean id="newsDao" class="rsj.admin.web.dao.impl.news.NewsDaoImpl"/>
+		<bean id="reportDao" class="rsj.admin.web.dao.impl.report.NewsDaoImpl"/>
 </beans>

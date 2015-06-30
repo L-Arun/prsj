@@ -58,5 +58,6 @@
 		
 		<bean id="archivesService" class="rsj.admin.web.service.impl.archives.ArchivesServiceImpl" />
 		<bean id="newsService" class="rsj.admin.web.service.impl.news.NewsServiceImpl" />
+		<bean id="reportService" class="rsj.admin.web.service.impl.report.ReportServiceImpl" />
 
 </beans>

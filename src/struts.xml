@@ -140,6 +140,10 @@
 		</action>
 	</package>
 	
+	<package name="report" extends="default" namespace="/report">
+		<action name="reportSubmitForJson" class="reportSubmitForJsonAction">
+		</action>
+	</package>
 	
 	<include file="struts-include.xml"></include>
 </struts>

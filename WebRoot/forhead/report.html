@@ -4,8 +4,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
 <title>滦平县人力资源和社会保障局</title>
-<meta name="description" content="">
-<meta name="keywords" content="">
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
 <link rel="stylesheet" type="text/css" href="css/lpxrsj.css" media="screen">
 <link rel="stylesheet" type="text/css" href="css/lpxrsj_main.css" media="screen">
 <link rel="stylesheet" type="text/css" href="css/mmcf.css" media="screen">
@@ -19,48 +19,44 @@
 <script src="js/news.js" type="text/javascript"></script>
 <script type="text/javascript">
 function wsslSubmit(){
-	var peopleName = $("#peoplename").value();
-	if ("".equals(peopleName)) {
+	var peopleName = $("#peoplename").val();
+	if ("" == peopleName) {
 		alert("请输入姓名");
 		return;
 	}
-	var telno = $("#telno").value();
-	if ("".equals(telno)) {
+	var telno = $("#telno").val();
+	if ("" == telno) {
 		alert("请输入联系电话");
 		return;
 	}
-	var post = $("#post").value();
-	var email = $("#email").value();
-	var addr = $("#addr").value();
-	var stitle = $("#stitle").value();
-	if ("".equals(stitle)) {
+	var post = $("#post").val();
+	var email = $("#email").val();
+	var addr = $("#addr").val();
+	var stitle = $("#stitle").val();
+	if ("" == stitle) {
 		alert("请输入标题");
 		return;
 	}
-	var content = $("#content").value();
-	if ("".equals(content)) {
+	var content = $("#content").val();
+	if ("" == content) {
 		alert("请输入内容");
 		return;
 	}
 	
 	$.post("/prsj/report/reportSubmitForJson.do",
 			{
-				"listTypeValue": listTypeValue,
-				"pageNumber": pageNumber,
-				"newsSize": PAGE_SIZE, 
+				"peopleName": peopleName,
+				"telno": telno,
+				"post": post, 
+				"email": email, 
+				"addr": addr, 
+				"stitle": stitle, 
+				"content": content, 
 			},
 			function(object){
 				if (object.code == 0) {
-					var data = object.data;
-					var str = "<ul>";
-					for (var i = 0; i < data.length; i = i + 1) {
-						str += "<li><span class='fl dianhong'><a href='" + NEWS_URL_CONSTANT + data[i].key + "'  class='title'>" + data[i].name + "</a></span><span class='fr'>" + data[i].updateTime + "</span></li>";
-					}
-					str = str + "</ul>";
-					$("#newslist").html(str);
-					$("#pageStr").html(object.pageBean);
-					var strPlace = "<strong>您现在的位置:</strong> <a href='http://www.lpxrsj.gov.cn/'>主页</a> &gt; <a href='http://www.lpxrsj.gov.cn/" + object.typeValue + "'>  " + object.typeName + "</a> &gt;";
-					$("#place").html(strPlace);
+					alert(object.msg);
+					location.href = "http://www.lpxrsj.gov.cn";
 				}
 			},"json");
 }

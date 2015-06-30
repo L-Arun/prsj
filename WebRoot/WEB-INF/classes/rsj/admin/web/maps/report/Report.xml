@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="rsj.admin.web.domain.report">
+	<class name="Report" table="admin_report">
+        <id name="reportId" column="report_id">
+            <generator class="native"></generator>
+        </id>
+        <property name="peopleName" column="people_name"/>
+        <property name="peopleTel" column="people_tel"/>
+        <property name="peoplePost" column="people_post"/>
+        <property name="peopleEmail" column="people_email"/>
+        <property name="peopleAddr" column="people_addr"/>
+        <property name="reportTitle" column="report_title"/>
+        <property name="reportContent" column="report_content"/>
+        <property name="createTime" column="create_time" not-null="true" update="false"/>
+        <property name="updateTime" column="update_time" not-null="true"/>
+        <property name="isRe">
+        	<column name="is_re" precision="22" scale="0" not-null="true" />
+			<type name="rsj.admin.web.hibernate.usertype.IntegerBeanLabelUserType">
+				<param name="targetClass">
+					com.lehecai.core.YesNoStatus
+				</param>
+			</type>
+        </property>
+        <property name="reName" column="re_name"/>
+        <property name="reContent" column="re_content"/>
+        <property name="reStyle" column="re_style"/>
+        <property name="memo" length="4000"/>
+    </class>
+</hibernate-mapping>

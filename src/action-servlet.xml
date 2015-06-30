@@ -35,6 +35,8 @@
 		<bean id="firstPageNewsListForJsonAction" class="rsj.admin.web.action.news.FirstPageNewsListForJsonAction" scope="prototype"/>
 		<bean id="hotNewsListForJsonAction" class="rsj.admin.web.action.news.HotNewsListForJsonAction" scope="prototype"/>
 		<bean id="newsForJsonAction" class="rsj.admin.web.action.news.NewsForJsonAction" scope="prototype"/>
+
+		<bean id="reportSubmitForJsonAction" class="rsj.admin.web.action.report.ReportSubmitForJsonAction" scope="prototype"/>
 		<!-- JSON Action End -->
 		
 </beans>
