@@ -13,6 +13,9 @@ public class News implements Serializable {
 	 * 各类新闻
 	 */
 	private static final long serialVersionUID = -6100412628585480536L;
+	
+	public static final String ORDER_VIEW_TIMES = "viewTimes";
+	
 	private Long newsId;
 	private String title;
 	private NewsType newsType;

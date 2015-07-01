@@ -86,7 +86,7 @@ public class NewsDaoImpl extends HibernateDaoSupport implements ReportDao {
 						if(memo != null && !"".equals(memo)){
 							hql.append(" and u.memo like :memo");
 						}
-						hql.append(" order by u.createTime desc");
+						hql.append(" order by u.updateTime desc");
 						Query query = session.createQuery(hql.toString());
 								
 						if(reportId != null && reportId != 0){
@@ -218,7 +218,7 @@ public class NewsDaoImpl extends HibernateDaoSupport implements ReportDao {
 						if(memo != null && !"".equals(memo)){
 							hql.append(" and u.memo like :memo");
 						}
-						hql.append(" order by u.createTime desc");
+						hql.append(" order by u.updateTime desc");
 						Query query = session.createQuery(hql.toString());
 						
 						if(reportId != null && reportId != 0){

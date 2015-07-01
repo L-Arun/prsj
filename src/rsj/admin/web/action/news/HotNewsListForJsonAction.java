@@ -22,8 +22,6 @@ public class HotNewsListForJsonAction extends BaseAction {
 	private static final long serialVersionUID = 2436161530465382824L;
 	private Logger logger = LoggerFactory.getLogger(HotNewsListForJsonAction.class);
 	
-	private String ORDER_BY_VIEW_TIMES = "viewTimes";
-	
 	private NewsService newsService;
 	
 	private Integer newsSize;
@@ -36,7 +34,7 @@ public class HotNewsListForJsonAction extends BaseAction {
 		HttpServletResponse response = ServletActionContext.getResponse();
 		
 		JSONObject json = new JSONObject();
-		newses = newsService.hotNewsListForJson(YesNoStatus.YES, newsSize, ORDER_BY_VIEW_TIMES);
+		newses = newsService.hotNewsListForJson(YesNoStatus.YES, newsSize, News.ORDER_VIEW_TIMES);
 			if (newses != null && newses.size() > 0) {
 				json.put("code", rc);
 				json.put("msg", msg);

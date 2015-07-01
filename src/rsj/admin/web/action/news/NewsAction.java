@@ -4,6 +4,10 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import org.apache.struts2.ServletActionContext;
 import org.slf4j.Logger;
@@ -17,9 +21,11 @@ import rsj.admin.web.domain.news.News;
 import rsj.admin.web.enums.ArchivesType;
 import rsj.admin.web.enums.NewsType;
 import rsj.admin.web.service.news.NewsService;
+import rsj.admin.web.utils.DateUtil;
 import rsj.admin.web.utils.PageUtil;
 
 import com.lehecai.core.YesNoStatus;
+import com.opensymphony.xwork2.Action;
 
 public class NewsAction extends BaseAction {
 	private static final long serialVersionUID = 2436161530465382824L;
@@ -130,6 +136,34 @@ public class NewsAction extends BaseAction {
 		}
 		logger.info("进入输入新闻信息");
 		return "inputForm";
+	}
+	public String apply() {
+		logger.info("进入新闻审核");
+		int rc = 0;
+		String msg = "";
+		HttpServletResponse response = ServletActionContext.getResponse();
+		JSONObject json = new JSONObject();
+		
+		if (news != null && news.getNewsId() != null && news.getNewsId() != 0) {
+			news = newsService.get(news.getNewsId());
+			if (news != null) {
+				news.setIsApply(YesNoStatus.YES);
+				news.setUpdateTime(new Date());
+				newsService.merge(news);
+				rc = 0;
+			} else {
+				rc = 1;
+				msg = "审核程序错误";
+			}
+		} else {
+			rc = 1;
+			msg = "审核程序错误";
+		}
+		json.put("code", rc);
+		json.put("msg", msg);
+		writeRs(response, json);
+		logger.info("结束新闻审核");
+		return Action.NONE;
 	}
 
 	public String getTitle() {

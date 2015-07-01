@@ -19,57 +19,6 @@
 	<script type="text/javascript" src="${ctx}/js/jscalendar/calendar.js"></script>
 	<script type="text/javascript" src="${ctx}/js/jscalendar/lang/cn_utf8.js"></script>
 	<script type="text/javascript" src="${ctx}/js/jscalendar/calendar-setup.js"></script>
-	<script type="text/javascript">
-		$(function(){
-			$('#sub').removeAttr('disabled');
-			Calendar.setup(
-				    {
-				      inputField  : "beginCreateTime",    // ID of the input field
-				      ifFormat    : "%Y-%m-%d",   // the date format
-				      button      : "beginCreateTimeTrigger"      // ID of the button
-				    }
-				  );
-			Calendar.setup(
-				    {
-				      inputField  : "endCreateTime",    // ID of the input field
-				      ifFormat    : "%Y-%m-%d",   // the date format
-				      button      : "endCreateTimeTrigger"      // ID of the button
-				    }
-				  );
-			  
-			$("tr.beover").mouseover(function() {
-				$(this).addClass("over");
-			}).mouseout(function() {
-				$(this).removeClass("over");
-			});
-			
-			$.validator.setDefaults({
-				submitHandler: function(form) {
-					$('#sub').attr('disabled','disabled');
-					form.submit();
-				},
-				meta: "validate",
-				ignoreTitle: true//解决与google Toolbar的冲突
-			});
-			$("#theform").validate({
-				rules:{
-					"number":{
-							maxlength:64,
-							minlength:1,
-							rangelength:[1,64]
-						},
-					"department":{
-							maxlength:64,
-							minlength:1,
-							rangelength:[1,64]
-						}
-				},
-				success: function(label) {
-					label.addClass("valid").html("<img src='${ctx}/images/ok.gif' border='0'/>")
-				}
-			});
-		});
-	</script>
   </head>
   <body>
   		<div>
@@ -99,10 +48,6 @@
 				    			</td>
 				    		</tr>
 				    		<tr>
-				    			<td colspan="2">收文时间:从<input type="text" id="beginCreateTime" name="beginCreateTime" size="10" value="<fmt:formatDate value='${beginCreateTime}' pattern='yyyy-MM-dd'/>"/><input type="button" id="beginCreateTimeTrigger" value="选择"/>
-				    			至<input type="text" id="endCreateTime" name="endCreateTime" size="10" value="<fmt:formatDate value='${endCreateTime}' pattern='yyyy-MM-dd'/>"/><input type="button" id="endCreateTimeTrigger" value="选择"/></td>
-				    		</tr>
-				    		<tr>
 				    			<td colspan="3"><input id="sub" type="submit" value="查询"/></td>
 				    		</tr>
 				    	</table>
@@ -130,7 +75,7 @@
 						<tr class="beover">
 			    			<td>${index.count}</td>
 			    			<td>${newsId}</td>
-			    			<td><a href="${ctx}/news/news.do?action=view&news.id=${id}">${title}</a></td>
+			    			<td><a href="${ctx}/news/news.do?action=view&news.newsId=${newsId}">${title}</a></td>
 			    			<td>${newsType.name}</td>
 			    			<td><s:date name="createTime" format="yyyy-MM-dd" /></td>
 			    			<td>${username}</td>
@@ -138,7 +83,7 @@
 			    			<td>${updateUsername}</td>
 			    			<td>${isImageNews.name}</td>
 			    			<td>${isApply.name}</td>
-			    			<td><a href="${ctx}/news/news.do?action=input&news.id=${id}">修改</a></td>
+			    			<td><a href="${ctx}/news/news.do?action=input&news.newsId=${newsId}">修改</a></td>
 			    		</tr>
 			    		</s:iterator>
 			    	</table>

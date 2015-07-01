@@ -13,6 +13,23 @@
 	<link rel="stylesheet" type="text/css" href="${ctx}/js/easyui/themes/icon.css"/>
 	<script type="text/javascript" src="${ctx}/js/jquery-1.4.2.js"></script>
 	<script type="text/javascript" src="${ctx}/js/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript">
+		function apply(newsId) {
+			$.post( "${ctx}/news/news.do",
+				{
+					"action": "apply",
+					"news.newsId" : newsId,
+				},
+				function(object){
+					if (object.code == 0) {
+						alert("成功");
+						$("#isApply").html("是");
+					} else {
+						alert(msg);
+					}
+				}, "json");
+		}
+	</script>
   </head>
   <body>	
   	<div id="main">
@@ -21,7 +38,7 @@
     		<div>
 	    		<table cellpadding="0" cellspacing="0" border="0" style="width:50%" class="querytab">
 	    			<tr>
-		    			<td class="alignright_30">编码：</td><td class="alignleft">${news.id}</td>
+		    			<td class="alignright_30">编码：</td><td class="alignleft">${news.newsId}</td>
 		    		</tr>
 		    		<tr>
 		    			<td class="alignright_30">标题：</td><td class="alignleft">${news.title}</td>
@@ -36,13 +53,18 @@
 		    			<td class="alignright_30">分类：</td><td class="alignleft">${news.newsType.name}</td>
 		    		</tr>
 		    		<tr>
-		    			<td class="alignright_30">审核状态：</td><td class="alignleft">${news.isApply.name}</td>
-		    		</tr>
-		    		<tr>
-		    			<td class="alignright_30">备注：</td><td class="alignleft">${news.memo}</td>
+		    			<td class="alignright_30">审核状态：</td><td class="alignleft" id="isApply">${news.isApply.name}
+		    			<c:if test="${news.isApply.value == 0}">
+		    				<input type="button" value="通过审核" onclick="apply(${news.newsId})"/>
+		    			</c:if>
+		    			
+		    			</td>
 		    		</tr>
 		    		<tr>
 		    			<td class="alignright_30">内容预览：</td><td class="alignleft">${news.content}</td>
+		    		</tr>
+		    		<tr>
+		    			<td class="alignright_30">备注：</td><td class="alignleft">${news.memo}</td>
 		    		</tr>
 	    		</table>
     		</div>

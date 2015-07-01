@@ -71,7 +71,7 @@ public class NewsDaoImpl extends HibernateDaoSupport implements NewsDao {
 						if(memo != null && !"".equals(memo)){
 							hql.append(" and u.memo like :memo");
 						}
-						hql.append(" order by u.createTime desc");
+						hql.append(" order by u.updateTime desc");
 						Query query = session.createQuery(hql.toString());
 						
 						if(newsId != null && newsId != 0){
@@ -144,7 +144,7 @@ public class NewsDaoImpl extends HibernateDaoSupport implements NewsDao {
 						if(isApply != null && isApply.getValue() != YesNoStatus.ALL.getValue()){
 							hql.append(" and u.isApply = :isApply");
 						}
-						hql.append(" order by u.createTime desc");
+						hql.append(" order by u.updateTime desc");
 						Query query = session.createQuery(hql.toString());
 								
 						if(newsType != null && newsType.getValue() != NewsType.ALL.getValue()){
@@ -216,7 +216,7 @@ public class NewsDaoImpl extends HibernateDaoSupport implements NewsDao {
 						if(memo != null && !"".equals(memo)){
 							hql.append(" and u.memo like :memo");
 						}
-						hql.append(" order by u.createTime desc");
+						hql.append(" order by u.updateTime desc");
 						Query query = session.createQuery(hql.toString());
 								
 						if(newsId != null && newsId != 0){
@@ -313,7 +313,7 @@ public class NewsDaoImpl extends HibernateDaoSupport implements NewsDao {
 						if(isImageNews != null && isImageNews.getValue() != YesNoStatus.ALL.getValue()){
 							hql.append(" and u.isImageNews = :isImageNews");
 						}
-						hql.append(" order by u.createTime desc");
+						hql.append(" order by u.updateTime desc");
 						Query query = session.createQuery(hql.toString());
 								
 						if(isApply != null && isApply.getValue() != YesNoStatus.ALL.getValue()){
@@ -348,7 +348,7 @@ public class NewsDaoImpl extends HibernateDaoSupport implements NewsDao {
 						if(isApply != null && isApply.getValue() != YesNoStatus.ALL.getValue()){
 							hql.append(" and u.isApply = :isApply");
 						}
-						hql.append(" order by u.createTime desc");
+						hql.append(" order by u.updateTime desc");
 						Query query = session.createQuery(hql.toString());
 								
 						if(newsType != null && newsType.getValue() != NewsType.ALL.getValue()){
@@ -391,7 +391,7 @@ public class NewsDaoImpl extends HibernateDaoSupport implements NewsDao {
 						if(isApply != null && isApply.getValue() != YesNoStatus.ALL.getValue()){
 							hql.append(" and u.isApply = :isApply");
 						}
-						hql.append(" order by u.createTime desc");
+						hql.append(" order by u.updateTime desc");
 						Query query = session.createQuery(hql.toString());
 								
 						if(newsType != null && newsType.getValue() != NewsType.ALL.getValue()){
@@ -426,10 +426,9 @@ public class NewsDaoImpl extends HibernateDaoSupport implements NewsDao {
 							hql.append(" and u.isApply = :isApply");
 						}
 						if (order != null && !"".equals(order)) {
-							
 							hql.append(" order by u." + order + " desc");
 						} else {
-							hql.append(" order by u.createTime desc");
+							hql.append(" order by u.updateTime desc");
 						}
 						Query query = session.createQuery(hql.toString());
 								

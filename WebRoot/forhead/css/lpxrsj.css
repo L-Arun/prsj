@@ -61,7 +61,7 @@ h1 {font:26px tahoma, arial; color:#324143;}
 .links{ clear:both; padding-top:5px;}
 .links_ks ul li{ float:left; display:inline; overflow:hidden; margin-left:5px; margin-top:10px; margin-bottom:10px; padding:0px; line-height:40px;}
 .links_ks ul li a{ color:#333333; text-decoration:none;}
-.foot{ clear:both; height:36px; line-height:36px; background-color:#0162b3; color:#FFFFFF; text-align:center; font-size:12px;}
+.foot{ clear:both; height:70px; line-height:14px; background-color:#0162b3; color:#FFFFFF; text-align:center; font-size:12px;}
 
 .mmcwide {width:680px; overflow:hidden;}
 .mmcnarrow {width:270px; overflow:hidden;}
