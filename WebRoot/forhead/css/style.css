@@ -61,7 +61,6 @@
 .footer{clear:both; width:980px; margin:5px auto; text-align:center; _padding-left:1px}
 .about{background:url(../images/aboutre.gif) repeat-x; height:32px; line-height:32px; color:#fff;}
 .about a{color:#fff; padding:0 8px;}
-.foot{ height:68px; line-height:20px; padding-top:8px;}
 
 .ls{position:absolute; top:5px; left:140px;}
 .ls .lsinput{height:20px; line-height:20px; border:1px solid #bfbfbf; border-right:none; width:150px; padding-left:4px; color:#999; float:left;}

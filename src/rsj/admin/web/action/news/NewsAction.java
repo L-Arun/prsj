@@ -6,7 +6,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.apache.struts2.ServletActionContext;
@@ -21,7 +20,6 @@ import rsj.admin.web.domain.news.News;
 import rsj.admin.web.enums.ArchivesType;
 import rsj.admin.web.enums.NewsType;
 import rsj.admin.web.service.news.NewsService;
-import rsj.admin.web.utils.DateUtil;
 import rsj.admin.web.utils.PageUtil;
 
 import com.lehecai.core.YesNoStatus;
@@ -99,7 +97,7 @@ public class NewsAction extends BaseAction {
 			return "failure";
 		}
 		UserSessionBean userSessionBean = (UserSessionBean) super.getSession().get(Global.USER_SESSION);
-		String tmpUsername = userSessionBean.getUser().getUserName();
+		String tmpUsername = userSessionBean.getUser().getName();
 		
 		if (newsTypeValue != null && newsTypeValue != 0) {
 			news.setNewsType(NewsType.getItem(newsTypeValue));
@@ -117,6 +115,7 @@ public class NewsAction extends BaseAction {
 			news.setUsername(tmpUsername);
 			news.setCreateTime(new Date());
 			news.setUpdateUsername(tmpUsername);
+			news.setViewTimes(Long.valueOf(0));
 			news.setUpdateTime(new Date());
 			newsService.save(news);
 		} else{
@@ -148,7 +147,6 @@ public class NewsAction extends BaseAction {
 			news = newsService.get(news.getNewsId());
 			if (news != null) {
 				news.setIsApply(YesNoStatus.YES);
-				news.setUpdateTime(new Date());
 				newsService.merge(news);
 				rc = 0;
 			} else {

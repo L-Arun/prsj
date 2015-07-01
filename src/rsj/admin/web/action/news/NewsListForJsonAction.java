@@ -43,10 +43,10 @@ public class NewsListForJsonAction extends BaseAction {
 		}
 		HttpServletResponse response = ServletActionContext.getResponse();
 		JSONObject json = new JSONObject();
-		newses = newsService.listForJson(newsType, YesNoStatus.YES, newsSize);
 		PageBean pageBean = new PageBean();
 		pageBean.setPageSize(newsSize);
 		pageBean.setPage(pageNumber);
+		newses = newsService.listForJson(newsType, YesNoStatus.YES, pageBean);
 		pageBean = newsService.getListForJsonPageBean(newsType, YesNoStatus.YES, pageBean);
 		if (newses != null && newses.size() > 0) {
 			json.put("code", rc);
