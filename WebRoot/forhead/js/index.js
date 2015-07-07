@@ -3,7 +3,7 @@ var NEWS_URL_CONSTANT = "/prsj/forhead/news.html?newsId=";
 
 var NEWS_SIZE_6 = 6;
 var NEWS_SIZE_9 = 9;
-var NEWS_SIZE_13 = 13;
+var NEWS_SIZE_13 = 18;
 
 var NEWS_TYPE_ALL = -1;
 var NEWS_TYPE_ZHENG_CE = 1;

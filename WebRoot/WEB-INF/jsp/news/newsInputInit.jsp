@@ -75,7 +75,7 @@
   	
   	<div id="main">
  		<c:choose>
-   			<c:when test="${news.newsId == null}">
+   			<c:when test="${news.id == null}">
    			<div class="titlediv">您所在的位置：新闻管理->新闻管理->新闻添加</div>
    			</c:when>
    			<c:otherwise>
@@ -84,58 +84,48 @@
    		</c:choose>  	
     	<div id="content" class="margin_10">
     	<form id="theform" action="${ctx}/news/news.do" method="post">
-    		<input type="hidden" name="action" value="manage"/>
-     		<input type="hidden" name="news.newsId" value="${news.newsId}"/>
-     		<input type="hidden" name="news.username" value="${news.username}"/>
-     		<input type="hidden" name="news.viewTimes" value="${news.viewTimes}"/>
+    		<input type="hidden" name="action" value="init"/>
     		<div id="form">
 	    		<table cellpadding="0" cellspacing="0" border="0" style="width:50%" class="querytab">
-		    		<c:if test="${news.newsId != null}">
-		    			<tr id="libtn"><td class="alignright"><span>新闻ID：</span></td><td class="alignleft">${news.newsId}</td></tr>
-		    		</c:if>
-		    		<tr><td class="alignright" width="20%"><span class="red spanmargin">*</span><span>标题：</span></td><td class="alignleft"><input type="text" name="news.title" value="${news.title}"  maxlength="255"/></td></tr>
+		    		<tr><td class="alignright" ><span class="red spanmargin">*</span><span>标题：</span></td><td class="alignleft"><input type="text" name="news.title" value="${news.title}"  maxlength="255"/></td></tr>
+		    		<tr><td class="alignright" ><span class="red spanmargin">*</span><span>浏览次数：</span></td><td class="alignleft"><input type="text" name="news.viewTimes" value="${news.viewTimes}"  maxlength="255"/></td></tr>
 		    		<tr>
 		    			<td class="alignright">
 		    				<span class="red spanmargin">*</span><span>新闻类型：</span>
 		    			</td>
 		    			<td class="alignleft"><s:select name="newsTypeValue" list="newsTypes" listKey="value" listValue="name"></s:select></td>
 		    		</tr>
-		    		<c:if test="${news.newsId != null}">
- 		    			<tr id="libtn"><td class="alignright"><span>新闻创建：</span></td><td class="alignleft">${news.username}(${news.createTime})</td></tr>
-  		    		</c:if>
- 		    		<c:if test="${news.newsId != null}">
- 		    			<tr id="libtn"><td class="alignright"><span>最后修改：</span></td><td class="alignleft">${news.updateUsername}(${news.updateTime})</td></tr>
- 		    		</c:if>
+		    		<tr>
+		    			<td class="alignright">
+		    				<span class="red spanmargin">*</span><span>发布时间：</span>
+		    			</td>
+		    			<td class="alignleft"><input type="text" name="news.memo" value="${news.memo}"  maxlength="255"/></td>
+		    		</tr>
 		    		<tr>
 		    			<td class="alignright">
 		    				<span class="red spanmargin">*</span><span>是否设为首页图片新闻：</span>
 		    			</td>
 		    			<td class="alignleft"><s:select name="isImageNewsValue" list="yesNoStatuses" listKey="value" listValue="name"></s:select></td>
 		    		</tr>
-		    		<c:if test="${news.newsId != null}">
- 			    		<tr><td class="alignright"><span>审核状态：</span></td><td class="alignleft">${news.isApply.name}</td></tr>
- 			    		<tr><td class="alignright"><span>浏览次数：</span></td><td class="alignleft">${news.viewTimes}</td></tr>
- 		    		</c:if>
+		    		
 		    		<tr><td colspan="2">
 		    			<input id="imagePath" name="news.imagePath" value="${news.imagePath}" type="hidden"/>
-	    				<textarea name="news.content"  id="myEditor">${news.content}</textarea>  
+	    				<textarea name="news.content" cols="100" rows="80"  id="myEditor">${news.content}</textarea>  
 						<script type="text/javascript"> 
-						    var editor = new UE.ui.Editor({
+						    var editor = new UE.ui.Editor({ 
 						    	initialFrameWidth:1300, 
 						    	initialFrameHeight:1000 
 						    }); 
-						    
 						    editor.render("myEditor"); 
 						    //1.2.4以后可以使用一下代码实例化编辑器 
 						    //UE.getEditor(’myEditor’) 
 						</script> 
 	    			</td></tr>
-		    		<tr><td class="alignright"><span>备注：</span></td><td class="alignleft"><textarea name="news.memo" cols="60" rows="5">${news.memo}</textarea></td></tr>
 	    		</table>
     		</div>
     		<div id="foot"><center><input id="sub" type="button" value="提交 "/></center></div>
     		<div class="margin_10"><center><a href="${ctx}/news/news.do" class="easyui-linkbutton" iconCls="icon-reload">返回列表</a></center></div>
- 	    </form>
+    	</form>
     	</div>
     </div>
   </body>

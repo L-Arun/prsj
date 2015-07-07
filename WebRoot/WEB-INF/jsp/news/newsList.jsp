@@ -24,6 +24,7 @@
   		<div>
   			<div class="titlediv">您所在的位置：新闻管理->新闻管理->新闻列表</div>
   			<div class="add_div_margin"><a href="${ctx}/news/news.do?action=input" class="easyui-linkbutton" iconCls="icon-add">添加新闻</a></div>
+  			<div class="add_div_margin"><a href="${ctx}/news/news.do?action=jumpInit" class="easyui-linkbutton" iconCls="icon-add">初始化新闻</a></div>
   			<div>
   				<div>
   					<div class="pagediv">条件查询</div>

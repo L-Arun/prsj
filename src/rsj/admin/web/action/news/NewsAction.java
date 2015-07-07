@@ -20,6 +20,7 @@ import rsj.admin.web.domain.news.News;
 import rsj.admin.web.enums.ArchivesType;
 import rsj.admin.web.enums.NewsType;
 import rsj.admin.web.service.news.NewsService;
+import rsj.admin.web.utils.DateUtil;
 import rsj.admin.web.utils.PageUtil;
 
 import com.lehecai.core.YesNoStatus;
@@ -91,6 +92,37 @@ public class NewsAction extends BaseAction {
 		logger.info("结束查询新闻信息");
 		return "view";
 	}
+	public String jumpInit() {
+		return "init";
+	}
+	public String init(){
+		logger.info("进入初始化新闻信息");
+		if (news == null) {
+			return "failure";
+		}
+		UserSessionBean userSessionBean = (UserSessionBean) super.getSession().get(Global.USER_SESSION);
+		String tmpUsername = userSessionBean.getUser().getName();
+		
+		if (newsTypeValue != null && newsTypeValue != 0) {
+			news.setNewsType(NewsType.getItem(newsTypeValue));
+		}
+		if (isImageNewsValue != null && isImageNewsValue != YesNoStatus.ALL.getValue()) {
+			news.setIsImageNews(YesNoStatus.getItem(isImageNewsValue));
+			if (news.getIsImageNews().getValue() == YesNoStatus.YES.getValue()) {
+				if(news.getImagePath() == null || "".equals(news.getImagePath())){
+					news.setIsImageNews(YesNoStatus.NO);
+				}
+			}
+		}
+		news.setIsApply(YesNoStatus.YES);
+		news.setUsername(tmpUsername);
+		news.setUpdateUsername(tmpUsername);
+		news.setCreateTime(DateUtil.parseDate(news.getMemo()));
+		news.setUpdateTime(DateUtil.parseDate(news.getMemo()));
+		newsService.save(news);
+		logger.info("结束初始化新闻信息");
+		return "success";
+	}
 	public String manage(){
 		logger.info("进入修改新闻信息");		
 		if (news == null) {
@@ -119,6 +151,7 @@ public class NewsAction extends BaseAction {
 			news.setUpdateTime(new Date());
 			newsService.save(news);
 		} else{
+			
 			news.setUpdateUsername(tmpUsername);
 			news.setUpdateTime(new Date());
 			newsService.merge(news);

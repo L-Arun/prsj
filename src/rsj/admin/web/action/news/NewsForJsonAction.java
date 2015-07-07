@@ -14,6 +14,7 @@ import rsj.admin.web.domain.news.News;
 import rsj.admin.web.service.news.NewsService;
 import rsj.admin.web.utils.DateUtil;
 
+import com.lehecai.core.YesNoStatus;
 import com.opensymphony.xwork2.Action;
 
 public class NewsForJsonAction extends BaseAction {
@@ -38,7 +39,7 @@ public class NewsForJsonAction extends BaseAction {
 			writeRs(response, json);
 		} else {
 			News news = newsService.get(newsId);
-			if (news == null) {
+			if (news == null || news.getIsApply().getValue() == YesNoStatus.NO.getValue()) {
 				rc = 1;
 				msg = "新闻查询出错";
 				json.put("code", rc);

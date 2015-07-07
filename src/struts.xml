@@ -127,6 +127,7 @@
 			<result name="list">/WEB-INF/jsp/news/newsList.jsp</result>
 			<result name="view">/WEB-INF/jsp/news/newsView.jsp</result>
 			<result name="inputForm">/WEB-INF/jsp/news/newsInputL.jsp</result>
+			<result name="init">/WEB-INF/jsp/news/newsInputInit.jsp</result>
 		</action>
 		<action name="newsListForJson" class="newsListForJsonAction">
 		</action>
