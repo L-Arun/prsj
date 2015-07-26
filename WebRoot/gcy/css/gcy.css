@@ -1,0 +1,51 @@
+@charset "utf-8";
+/* CSS Document */
+* {padding:0px; margin:0px;}
+html {background:#fff;}
+body{font-size:14px;}
+.font_size_6{font-size:6px;}
+img {border:none;}
+a {color:#333333; text-decoration:none;}
+a:hover {color:#ea9f36; text-decoration:none;}
+ul {list-style-type:none; margin:0px; padding:0px; list-style-image:none;}
+input {font:12px verdana, arial, tahoma; vertical-align:middle;}
+select {font:12px verdana, arial, tahoma; vertical-align:middle;}
+button {font:12px verdana, arial, tahoma; vertical-align:middle;}
+.clear {clear:both;}
+.fl {float:left;}
+.fr {float:right;}
+.grayline {height:3px; background-color:#987b5b;}
+.center {margin:0px auto;}
+.tcenter {text-align:center;}
+h1 {font:26px tahoma, arial; color:#324143;}
+.foot a {color:#ffffff; text-decoration:none;}
+.foot a:hover {color:#ffcf00; text-decoration:underline;}
+.w980 {width:980px; overflow:hidden;}
+.w100 {width:100px; overflow:hidden;}
+.w253 {width:253px; overflow:hidden;}
+
+/***************head***************/
+.topheadbeijing{height:124px; background:url(../images/topheaddise.jpg) repeat-x;}
+.topheadnav{height:38px; line-height:38px; font-size:12px;}
+.logodi{width:980px; height:86px; background:url(../images/topheadlogodi.jpg) no-repeat; ling-height:86px;}
+.showtime {width:190px; color:#FFFFFF; font-family:'寰蒋闆呴粦', '榛戜綋', arial; text-align:center; margin-top:26px;}
+.hbrswnavx{height:38px; background:url(../images/bg1.gif); line-height:38px; overflow:hidden;}
+.hbrswnavx ul li{ float:left; display:inline; padding-left:45px;}
+.hbrswnavx a {color:#ffffff; text-decoration:none;}
+.hbrswnavx a:hover {color:#ffcf00; text-decoration:underline;}
+
+/****************foot*******************/
+.links{ clear:both; padding-top:5px;}
+.links_ks ul li{ float:left; display:inline; overflow:hidden; margin-left:5px; margin-top:10px; margin-bottom:10px; padding:0px; line-height:40px;}
+.links_ks ul li a{ color:#333333; text-decoration:none;}
+.foot{ clear:both; height:36px; line-height:36px; background-color:#0162b3; color:#FFFFFF; text-align:center; font-size:12px;}
+
+
+.wsbsdt{ height:30px; line-height:28px; background:url(../images/datingdise.jpg) repeat-x; margin-top:5px;}
+.wsbsdt strong{ padding-left:20px;}
+
+
+/*****scroll*****/
+
+.scroll_list {overflow:hidden;height:150px;width:980px; }
+.scroll_list img {width:200px; height:150px; margin-left:20px 5px; }

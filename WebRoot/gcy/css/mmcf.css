@@ -1,0 +1,41 @@
+@charset "utf-8";
+/* CSS Document */
+a img {border:0}
+.topvebanner { margin: 0 auto; width: 400px; height: 240px; overflow: hidden; }
+.topvebanner ul { margin: 0; padding: 0; }
+#myjQuery { BACKGROUND: #000; OVERFLOW: hidden; WIDTH: 400px; POSITION: relative; HEIGHT: 240px; }
+#myjQueryContent { OVERFLOW: hidden; WIDTH: 400px; HEIGHT: 240px; }
+#myjQueryContent DIV { POSITION: absolute; HEIGHT: 240px; }
+#myjQueryContent .smask { Z-INDEX: -1; }
+#myjQueryContent IMG { WIDTH: 400px; HEIGHT: 240px; border: 0; }
+#myjQueryNav { DISPLAY: block; OVERFLOW: hidden; WIDTH: 150px; HEIGHT: 8px; position: absolute; top: 225px; right: 10px; z-index: 5; }
+#myjQueryNav LI { DISPLAY: block; FLOAT: left; WIDTH: 25px; CURSOR: pointer; HEIGHT: 8px; TEXT-ALIGN: center; margin-left: 1px; background: #666; color: #fff; }
+#myjQueryNav .nbg { BACKGROUND: #666; }
+#myjQueryNav A { DISPLAY: block; Z-INDEX: 12; MARGIN: 0px auto; TEXT-TRANSFORM: uppercase; WIDTH: 45px; COLOR: #ffffff; LINE-HEIGHT: 22px; POSITION: relative; HEIGHT: 22px; z-index: 20; }
+#myjQueryNav .current { BACKGROUND: #ccc; }
+#myjQueryNav .current A { COLOR: #fff; }
+#myjQuery #flow {margin-top: -33px; WIDTH: 45px; HEIGHT: 22px; Z-INDEX: 22; left: 652px; POSITION: absolute; }
+
+
+#jQueryVideo { BACKGROUND: #000; OVERFLOW: hidden; WIDTH: 258px; POSITION: relative; HEIGHT: 184px; }
+#jQueryVideoContent { OVERFLOW: hidden; WIDTH: 258px; HEIGHT: 184px; }
+#jQueryVideoContent DIV { POSITION: absolute; HEIGHT: 184px; }
+#jQueryVideoContent .smask { Z-INDEX: -1; }
+#jQueryVideoContent IMG { WIDTH: 258px; HEIGHT: 184px; border: 0; }
+#jQueryVideoNav { DISPLAY: block; OVERFLOW: hidden; WIDTH: 81px; HEIGHT: 8px; position: absolute; top: 160px; right: 10px; z-index: 5; }
+#jQueryVideoNav LI { DISPLAY: block; FLOAT: left; WIDTH: 15px; CURSOR: pointer; HEIGHT: 8px; TEXT-ALIGN: center; margin-left: 1px; background: #666; color: #fff; }
+#jQueryVideoNav .nbg { BACKGROUND: #666; }
+#jQueryVideoNav A { DISPLAY: block; Z-INDEX: 12; MARGIN: 0px auto; TEXT-TRANSFORM: uppercase; WIDTH: 45px; COLOR: #ffffff; LINE-HEIGHT: 22px; POSITION: relative; HEIGHT: 22px; z-index: 20; }
+#jQueryVideoNav .current { BACKGROUND: #ccc; }
+#jQueryVideoNav .current A { COLOR: #fff; }
+#jQueryVideo #Vflow {margin-top: -33px; WIDTH: 45px; HEIGHT: 22px; Z-INDEX: 22; left: 652px; POSITION: absolute; }
+
+
+
+
+
+.mmcad_full {width:100%; margin:0px auto; background:url('../images/slide_bg.gif') top center repeat-x; position:relative;}
+.mmcad_full .mmcad_fcon {width:980px; height:470px; margin:0px auto; display:none;}
+.mmcad_full .mmcad_fbtn {width:19px; height:55px; display:none; position:absolute; top:10px; right:10px;}
+.mmcad_full .mmcad_fbtn a {height:55px; display:block; background:url('../images/mmcad_btn.png') no-repeat 0px 0px; overflow:hidden;}
+.mmcad_full .mmcad_fbtn .mmcad_close {background:url('../images/mmcad_btn.png') no-repeat -19px 0px;}

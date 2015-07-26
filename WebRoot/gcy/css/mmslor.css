@@ -1,0 +1,22 @@
+.mmslor {width:266px; background:#edf4fc; overflow:hidden; border:1px solid #c3cac2;}
+.mmslor .lortitle {height:32px; background-color:#0d69b6; line-height:32px; border:2px solid #edf4fc;}
+.mmslor .lortitle strong {color:#FFFFFF; padding-left:20px;}
+.mmslor .newslist {padding:10px;}
+.mmslor .newslist ul li {line-height:30px; height:30px; 
+                               background:url(../images/erjidiandian.jpg) 10px 10px no-repeat; 
+							   padding-left:20px; 
+							   border-bottom:1px dashed #c7cbd4;
+							   width:220px;
+							   overflow:hidden;
+							   text-overflow:ellipsis;
+							   white-space:nowrap;
+							   }
+.mmslor .newslist ul li a {color:#4d5154; text-decoration:none;}
+.mmslor .special {margin-bottom:10px;}
+.mmslor .special ul li {padding-left:10px; padding-top:5px;}
+
+
+.mmslor .newslistgongkai{padding:2px;}
+.mmslor .newslistgongkai ul li{height:42px; font-size:18px; font-weight:bold; line-height:42px; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;}
+.mmslor .newslistgongkai ul li a{background:url(../images/erjidiandian.jpg) 20px center no-repeat; color:#4d5154; text-decoration:none; padding-left:36px;}
+.mmslor .newslistgongkai ul li a:hover{ background-color:#aac9f7; display:block;}
