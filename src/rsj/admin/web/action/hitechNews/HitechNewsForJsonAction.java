@@ -1,4 +1,4 @@
-package rsj.admin.web.action.news;
+package rsj.admin.web.action.hitechNews;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,18 +10,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import rsj.admin.web.action.BaseAction;
-import rsj.admin.web.domain.news.News;
-import rsj.admin.web.service.news.NewsService;
+import rsj.admin.web.domain.hitechNews.HitechNews;
+import rsj.admin.web.service.hitechNews.HitechNewsService;
 import rsj.admin.web.utils.DateUtil;
 
 import com.lehecai.core.YesNoStatus;
 import com.opensymphony.xwork2.Action;
 
-public class NewsForJsonAction extends BaseAction {
+public class HitechNewsForJsonAction extends BaseAction {
 	private static final long serialVersionUID = 2436161530465382824L;
-	private Logger logger = LoggerFactory.getLogger(NewsForJsonAction.class);
+	private Logger logger = LoggerFactory.getLogger(HitechNewsForJsonAction.class);
 	
-	private NewsService newsService;
+	private HitechNewsService hitechNewsService;
 	
 	private Long newsId;
 	
@@ -38,31 +38,31 @@ public class NewsForJsonAction extends BaseAction {
 			json.put("msg", msg);
 			writeRs(response, json);
 		} else {
-			News news = newsService.get(newsId);
-			if (news == null || news.getIsApply().getValue() == YesNoStatus.NO.getValue()) {
+			HitechNews hitechNews = hitechNewsService.get(newsId);
+			if (hitechNews == null || hitechNews.getIsApply().getValue() == YesNoStatus.NO.getValue()) {
 				rc = 1;
 				msg = "新闻查询出错";
 				json.put("code", rc);
 				json.put("msg", msg);
 				writeRs(response, json);
 			} else {
-				news.setViewTimes(news.getViewTimes() + 1);
+				hitechNews.setViewTimes(hitechNews.getViewTimes() + 1);
 				json.put("code", rc);
 				json.put("msg", msg);
 				JSONArray jsonArray = new JSONArray();
 				JSONObject j = new JSONObject();
-				j.put("key", news.getNewsId());
-				j.put("title", news.getTitle());
-				j.put("username", news.getUsername());
-				j.put("viewTimes", news.getViewTimes());
-				j.put("content", news.getContent());
-				j.put("updateTime", DateUtil.formatDate(news.getCreateTime(), DateUtil.DATETIME));
-				j.put("typeValue", news.getNewsType().getValue());
-				j.put("typeName", news.getNewsType().getName());
+				j.put("key", hitechNews.getNewsId());
+				j.put("title", hitechNews.getTitle());
+				j.put("username", hitechNews.getUsername());
+				j.put("viewTimes", hitechNews.getViewTimes());
+				j.put("content", hitechNews.getContent());
+				j.put("updateTime", DateUtil.formatDate(hitechNews.getCreateTime(), DateUtil.DATETIME));
+				j.put("typeValue", hitechNews.getHitechNewsType().getValue());
+				j.put("typeName", hitechNews.getHitechNewsType().getName());
 				jsonArray.add(j);
 				json.put("data", jsonArray.toString());
 				writeRs(response, json);
-				newsService.merge(news);
+				hitechNewsService.merge(hitechNews);
 			}
 			
 		}
@@ -71,20 +71,20 @@ public class NewsForJsonAction extends BaseAction {
 		
 	}
 	
-	public NewsService getNewsService() {
-		return newsService;
-	}
-
-	public void setNewsService(NewsService newsService) {
-		this.newsService = newsService;
-	}
-
 	public Long getNewsId() {
 		return newsId;
 	}
 
 	public void setNewsId(Long newsId) {
 		this.newsId = newsId;
+	}
+
+	public HitechNewsService getHitechNewsService() {
+		return hitechNewsService;
+	}
+
+	public void setHitechNewsService(HitechNewsService hitechNewsService) {
+		this.hitechNewsService = hitechNewsService;
 	}
 
 	

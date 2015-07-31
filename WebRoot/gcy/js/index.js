@@ -1,5 +1,5 @@
 // JavaScript Document
-var NEWS_URL_CONSTANT = "/prsj/forhead/news.html?newsId=";
+var NEWS_URL_CONSTANT = "/prsj/gcy/news.html?newsId=";
 
 var NEWS_SIZE_6 = 6;
 var NEWS_SIZE_9 = 9;
@@ -7,18 +7,14 @@ var NEWS_SIZE_13 = 13;
 
 var NEWS_TYPE_ALL = -1;
 var NEWS_TYPE_ZHENG_CE = 1;
-var NEWS_TYPE_ZHENG_WU = 2;
-var NEWS_TYPE_JIU_YE = 3;
-var NEWS_TYPE_SHE_BAO = 4;
-var NEWS_TYPE_REN_SHI = 5;
-var NEWS_TYPE_ZHONG_CAI = 6;
-var NEWS_TYPE_TONG_ZHI = 7;
-var NEWS_TYPE_JI_GOU = 8;
-var NEWS_TYPE_ZHAO_PIN = 9;
-var NEWS_TYPE_WEN_DA = 10;
+var NEWS_TYPE_DONG_TAI = 2;
+var NEWS_TYPE_JIAN_SHE = 3;
+var NEWS_TYPE_WEN_DA = 4;
+var NEWS_TYPE_TONG_ZHI = 5;
+var NEWS_TYPE_TUAN_DUI = 6;
 
 //图片新闻
-$.post("/prsj/news/pictureNewsListForJson.do",
+$.post("/prsj/hitechNews/pictureHitechNewsListForJson.do",
 	{
 		"newsSize" : NEWS_SIZE_9,
 	},
@@ -36,11 +32,11 @@ $.post("/prsj/news/pictureNewsListForJson.do",
 			$("#myjQueryContent").append(str);
 		}
 	},"json");
-var url = "/prsj/news/firstPageNewsListForJson.do";
-//最新动态
+var url = "/prsj/hitechNews/firstPageHitechNewsListForJson.do";
+//园区动态
 $.post(url,
 	{
-		"listTypeValue" : NEWS_TYPE_ALL,
+		"listTypeValue" : NEWS_TYPE_DONG_TAI,
 		"newsSize" : NEWS_SIZE_9,
 	},
 	function(object){
@@ -51,7 +47,7 @@ $.post(url,
 				str += "<li><a href='" + NEWS_URL_CONSTANT + data[i].key + "'>" + data[i].name + "</a></li>";
 			}
 			str = str + "</ul>";
-			$("#xinxi_zuixindongtai").append(str);
+			$("#xinxi_yuanqudongtai").append(str);
 		}
 	},"json");
 //通知公告
@@ -71,10 +67,10 @@ $.post(url,
 			$("#xinxi_tongzhigonggao").append(str);
 		}
 	},"json");
-//政务动态
+//扶持政策
 $.post(url,
 	{
-		"listTypeValue" : NEWS_TYPE_ZHENG_WU,
+		"listTypeValue" : NEWS_TYPE_ZHENG_CE,
 		"newsSize" : NEWS_SIZE_6,
 	},
 	function(object){
@@ -85,13 +81,13 @@ $.post(url,
     			str += "<li><a href='" + NEWS_URL_CONSTANT + data[i].key + "'>" + data[i].name + "</a></li>";
 			}
 			str = str + "</ul>";
-			$("#xinxi_zhengwudongtai").append(str);
+			$("#xinxi_zhengcefuchi").append(str);
 		}
 	},"json");
-//政策法规
+//入驻团队
 $.post(url,
 		{
-			"listTypeValue" : NEWS_TYPE_ZHENG_CE,
+			"listTypeValue" : NEWS_TYPE_TUAN_DUI,
 			"newsSize" : NEWS_SIZE_6,
 		},
 		function(object){
@@ -102,95 +98,10 @@ $.post(url,
 	    			str += "<li><a href='" + NEWS_URL_CONSTANT + data[i].key + "'>" + data[i].name + "</a></li>";
 				}
 				str = str + "</ul>";
-				$("#xinxi_zhengcefagui").append(str);
+				$("#xinxi_ruzhutuandui").append(str);
 			}
 		},"json");
-//人事人才
-$.post(url,
-		{
-			"listTypeValue" : NEWS_TYPE_REN_SHI,
-			"newsSize" : NEWS_SIZE_6,
-		},
-		function(object){
-			if (object.code == 0) {
-				var data = object.data;
-				var str = "<ul>";
-				for (var i = 0; i < data.length; i = i + 1) {
-					str += "<li><a href='" + NEWS_URL_CONSTANT + data[i].key + "'>" + data[i].name + "</a></li>";
-				}
-				str = str + "</ul>";
-				$("#xinxi_renshirencai").append(str);
-			}
-		},"json");
-//就业创业
-$.post(url,
-		{
-			"listTypeValue" : NEWS_TYPE_JIU_YE,
-			"newsSize" : NEWS_SIZE_6,
-		},
-		function(object){
-			if (object.code == 0) {
-				var data = object.data;
-				var str = "<ul>";
-				for (var i = 0; i < data.length; i = i + 1) {
-					str += "<li><a href='" + NEWS_URL_CONSTANT + data[i].key + "'>" + data[i].name + "</a></li>";
-				}
-				str = str + "</ul>";
-				$("#xinxi_jiuyechuangye").append(str);
-			}
-		},"json");
-//社会保障
-$.post(url,
-		{
-			"listTypeValue" : NEWS_TYPE_SHE_BAO,
-			"newsSize" : NEWS_SIZE_6,
-		},
-		function(object){
-			if (object.code == 0) {
-				var data = object.data;
-				var str = "<ul>";
-				for (var i = 0; i < data.length; i = i + 1) {
-					str += "<li><a href='" + NEWS_URL_CONSTANT + data[i].key + "'>" + data[i].name + "</a></li>";
-				}
-				str = str + "</ul>";
-				$("#xinxi_shehuibaozhang").append(str);
-			}
-		},"json");
-//仲裁监察
-$.post(url,
-		{
-			"listTypeValue" : NEWS_TYPE_ZHONG_CAI,
-			"newsSize" : NEWS_SIZE_6,
-		},
-		function(object){
-			if (object.code == 0) {
-				var data = object.data;
-				var str = "<ul>";
-				for (var i = 0; i < data.length; i = i + 1) {
-					str += "<li><a href='" + NEWS_URL_CONSTANT + data[i].key + "'>" + data[i].name + "</a></li>";
-				}
-				str = str + "</ul>";
-				$("#xinxi_zhongcaijiancha").append(str);
-			}
-		},"json");
-//机构设置
-$.post(url,
-		{
-			"listTypeValue" : NEWS_TYPE_JI_GOU,
-			"newsSize" : NEWS_SIZE_13,
-		},
-		function(object){
-			if (object.code == 0) {
-				var data = object.data;
-				var str = "<ul>";
-				for (var i = 0; i < data.length; i = i + 1) {
-					str += "<li><a href='" + NEWS_URL_CONSTANT + data[i].key + "'>" + data[i].name + "</a></li>";
-				}
-				str = str + "</ul>";
-				$("#xinxi_jigoushezhi").append(str);
-			}
-		},"json");
-//政策问答
+//业务问答
 $.post(url,
 		{
 			"listTypeValue" : NEWS_TYPE_WEN_DA,
@@ -204,23 +115,7 @@ $.post(url,
 					str += "<li><a href='" + NEWS_URL_CONSTANT + data[i].key + "'>" + data[i].name + "</a></li>";
 				}
 				str = str + "</ul>";
-				$("#xinxi_zhengcewenda").append(str);
+				$("#xinxi_yewuwenda").append(str);
 			}
 		},"json");
-//招聘信息
-$.post(url,
-		{
-			"listTypeValue" : NEWS_TYPE_ZHAO_PIN,
-			"newsSize" : NEWS_SIZE_6,
-		},
-		function(object){
-			if (object.code == 0) {
-				var data = object.data;
-				var str = "<ul>";
-				for (var i = 0; i < data.length; i = i + 1) {
-					str += "<li><a href='" + NEWS_URL_CONSTANT + data[i].key + "'>" + data[i].name + "</a></li>";
-				}
-				str = str + "</ul>";
-				$("#xinxi_zhaopinxinxi").append(str);
-			}
-		},"json");
+

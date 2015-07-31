@@ -49,17 +49,12 @@ public class HitechNewsType extends IntegerBeanLabelItem{
 	
 	public final static HitechNewsType ALL = new HitechNewsType("全部", -1,true);
 	
-//	public final static HitechNewsType ZHENG_CE = new HitechNewsType("政策法规", 1);
-//	public final static HitechNewsType ZHENG_WU = new HitechNewsType("政务信息", 2);
-//	public final static HitechNewsType JIU_YE = new HitechNewsType("就业创业", 3);
-//	public final static HitechNewsType SHE_BAO = new HitechNewsType("社会保障", 4);
-//	public final static HitechNewsType REN_SHI = new HitechNewsType("人事人才", 5);
-//	public final static HitechNewsType ZHONG_CAI = new HitechNewsType("仲裁监察", 6);
-//	public final static HitechNewsType TONG_ZHI = new HitechNewsType("通知公告", 7);
-//	public final static HitechNewsType JI_GOU = new HitechNewsType("机构设置", 8);
-//	public final static HitechNewsType ZHAO_PIN = new HitechNewsType("招聘信息", 9);
-//	public final static HitechNewsType WEN_DA = new HitechNewsType("政策问答", 10);
-//	public final static HitechNewsType XIA_ZAI = new HitechNewsType("资料下载", 11);
+	public final static HitechNewsType ZHENG_CE = new HitechNewsType("扶持政策", 1);
+	public final static HitechNewsType DONG_TAI = new HitechNewsType("园区动态", 2);
+	public final static HitechNewsType JIAN_SHE = new HitechNewsType("走进园区", 3);
+	public final static HitechNewsType WEN_DA = new HitechNewsType("业务问答", 4);
+	public final static HitechNewsType TONG_ZHI = new HitechNewsType("通知公告", 5);
+	public final static HitechNewsType TUAN_DUI = new HitechNewsType("入驻团队", 6);
 	public final static HitechNewsType QI_TA = new HitechNewsType("其他", 99);
 	
 	

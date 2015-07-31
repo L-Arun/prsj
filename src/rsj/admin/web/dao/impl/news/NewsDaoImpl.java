@@ -296,7 +296,7 @@ public class NewsDaoImpl extends HibernateDaoSupport implements NewsDao {
 		getHibernateTemplate().merge(news);		
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public List<News> pictureNewsListForJson(final YesNoStatus isApply,
 			final YesNoStatus isImageNews, final Integer newsSize) {
@@ -331,7 +331,7 @@ public class NewsDaoImpl extends HibernateDaoSupport implements NewsDao {
 				});
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public PageBean getListForJsonPageBean(final NewsType newsType,
 			final YesNoStatus isApply, final PageBean pageBean) {
@@ -374,7 +374,7 @@ public class NewsDaoImpl extends HibernateDaoSupport implements NewsDao {
 				});
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public List<News> listForJson(final NewsType newsType, final YesNoStatus isApply,
 			final PageBean pageBean) {

@@ -23,5 +23,5 @@
 	<context:property-placeholder location="classpath:admin.properties" />
 	
 	<import resource="classpath:bean-memcached.xml" />
-	
+	<import resource="classpath:bean-mail.xml" />
 </beans>

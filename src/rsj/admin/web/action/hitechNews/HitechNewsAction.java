@@ -90,9 +90,6 @@ public class HitechNewsAction extends BaseAction {
 		logger.info("结束查询新闻信息");
 		return "view";
 	}
-	public String jumpInit() {
-		return "init";
-	}
 	
 	public String manage(){
 		logger.info("进入修改新闻信息");		
@@ -259,7 +256,7 @@ public class HitechNewsAction extends BaseAction {
 		this.isImageNewsValue = isImageNewsValue;
 	}
 
-	public List<HitechNewsType> getNewsTypesQuery() {
+	public List<HitechNewsType> getHitechNewsTypesQuery() {
 		return HitechNewsType.getItemsForQuery();
 	}
 	
@@ -267,7 +264,7 @@ public class HitechNewsAction extends BaseAction {
 		return YesNoStatus.getItemsForQuery();
 	}
 	
-	public List<HitechNewsType> getNewsTypes() {
+	public List<HitechNewsType> getHitechNewsTypes() {
 		return HitechNewsType.getItems();
 	}
 	

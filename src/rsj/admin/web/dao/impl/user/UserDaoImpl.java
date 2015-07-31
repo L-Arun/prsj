@@ -34,7 +34,7 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 	 * @param pageBean
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public List<User> list(final String userName, final String name, final Date beginDate,
 			 final Date endDate, final Long roleID, final String valid, final PageBean pageBean) {
@@ -118,7 +118,7 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 		getHibernateTemplate().delete(user);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public User getByUserName(final String userName) {
 		return (User) getHibernateTemplate().execute(
@@ -148,7 +148,7 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 	 * @param pageBean
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public PageBean getPageBean(final String userName, final String name, final Date beginDate,
 			final Date endDate, final Long roleID, final String valid, final PageBean pageBean) {

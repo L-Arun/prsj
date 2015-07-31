@@ -15,7 +15,7 @@ import rsj.admin.web.multiconfirm.MulticonfirmTask;
 
 public class MulticonfirmRecordDaoImpl extends HibernateDaoSupport implements MulticonfirmRecordDao {
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public MulticonfirmRecord get(final MulticonfirmTask task, final Long userId) {
 		List<MulticonfirmRecord> list = (List<MulticonfirmRecord>) getHibernateTemplate().execute(
@@ -52,7 +52,7 @@ public class MulticonfirmRecordDaoImpl extends HibernateDaoSupport implements Mu
 		return (MulticonfirmRecord)getHibernateTemplate().merge(record);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public List<MulticonfirmRecord> getRecordList(final MulticonfirmTask task, final PageBean pageBean) {
 		return (List<MulticonfirmRecord>) getHibernateTemplate().execute(
@@ -79,7 +79,7 @@ public class MulticonfirmRecordDaoImpl extends HibernateDaoSupport implements Mu
 				});
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public PageBean getRecordPageBean(final MulticonfirmTask task, final PageBean pageBean) {
 		return (PageBean) getHibernateTemplate().execute(

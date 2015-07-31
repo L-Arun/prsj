@@ -28,7 +28,7 @@ public class HitechNewsDaoImpl extends HibernateDaoSupport implements HitechNews
 				new HibernateCallback() {
 					public Object doInHibernate(Session session)
 							throws HibernateException {
-						StringBuffer hql = new StringBuffer("from News u where 1 = 1");
+						StringBuffer hql = new StringBuffer("from HitechNews u where 1 = 1");
 
 						if(newsId != null && newsId != 0){
 							hql.append(" and u.newsId = :newsId");
@@ -140,7 +140,7 @@ public class HitechNewsDaoImpl extends HibernateDaoSupport implements HitechNews
 				new HibernateCallback() {
 					public Object doInHibernate(Session session)
 							throws HibernateException {
-						StringBuffer hql = new StringBuffer("select count(u) from News u where 1 = 1");
+						StringBuffer hql = new StringBuffer("select count(u) from HitechNews u where 1 = 1");
 
 						if(newsId != null && newsId != 0){
 							hql.append(" and u.newsId = :newsId");
@@ -246,6 +246,39 @@ public class HitechNewsDaoImpl extends HibernateDaoSupport implements HitechNews
 				});
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	public List<HitechNews> listForJson(final HitechNewsType hitechNewsType, final YesNoStatus isApply, final Integer newsSize) {
+		return (List<HitechNews>) getHibernateTemplate().execute(
+				new HibernateCallback() {
+					public Object doInHibernate(Session session)
+							throws HibernateException {
+						StringBuffer hql = new StringBuffer("from HitechNews u where 1 = 1");
+
+						
+						if(hitechNewsType != null && hitechNewsType.getValue() != NewsType.ALL.getValue()){
+							hql.append(" and u.hitechNewsType = :hitechNewsType");
+						}
+						if(isApply != null && isApply.getValue() != YesNoStatus.ALL.getValue()){
+							hql.append(" and u.isApply = :isApply");
+						}
+						hql.append(" order by u.updateTime desc");
+						Query query = session.createQuery(hql.toString());
+								
+						if(hitechNewsType != null && hitechNewsType.getValue() != HitechNewsType.ALL.getValue()){
+							query.setParameter("hitechNewsType", hitechNewsType);
+						}
+						if(isApply != null && isApply.getValue() != YesNoStatus.ALL.getValue()){
+							query.setParameter("isApply", isApply);
+						}
+						if(newsSize != null && newsSize != 0) {
+							query.setMaxResults(newsSize);
+						}
+						return query.list();
+					}
+				});
+	}
+	
 	@Override
 	public HitechNews get(Long newsId) {
 		// TODO Auto-generated method stub
@@ -262,6 +295,122 @@ public class HitechNewsDaoImpl extends HibernateDaoSupport implements HitechNews
 	public void merge(HitechNews hitechNews){
 		// TODO Auto-generated method stub
 		getHibernateTemplate().merge(hitechNews);		
+	}
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	public PageBean getListForJsonPageBean(final HitechNewsType hitechNewsType,
+			final YesNoStatus isApply, final PageBean pageBean) {
+		// TODO Auto-generated method stub
+		return (PageBean) getHibernateTemplate().execute(
+				new HibernateCallback() {
+					public Object doInHibernate(Session session)
+							throws HibernateException {
+						StringBuffer hql = new StringBuffer("select count(u) from HitechNews u where 1 = 1");
+
+						if(hitechNewsType != null && hitechNewsType.getValue() != HitechNewsType.ALL.getValue()){
+							hql.append(" and u.hitechNewsType = :hitechNewsType");
+						}
+						if(isApply != null && isApply.getValue() != YesNoStatus.ALL.getValue()){
+							hql.append(" and u.isApply = :isApply");
+						}
+						hql.append(" order by u.updateTime desc");
+						Query query = session.createQuery(hql.toString());
+								
+						if(hitechNewsType != null && hitechNewsType.getValue() != HitechNewsType.ALL.getValue()){
+							query.setParameter("hitechNewsType", hitechNewsType);
+						}
+						if(isApply != null && isApply.getValue() != YesNoStatus.ALL.getValue()){
+							query.setParameter("isApply", isApply);
+						}
+						if(pageBean.isPageFlag()){
+							int totalCount = ((Long)query.iterate().next()).intValue();
+							pageBean.setCount(totalCount);
+							int pageCount = 0;//页数
+							if(pageBean.getPageSize() != 0) {
+					            pageCount = totalCount / pageBean.getPageSize();
+					            if(totalCount % pageBean.getPageSize() != 0) {
+					                pageCount ++;
+					            }
+					        }
+							pageBean.setPageCount(pageCount);
+						}
+						return pageBean;
+					}
+				});
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@Override
+	public List<HitechNews> listForJson(final HitechNewsType hitechNewsType,
+			final YesNoStatus isApply, final PageBean pageBean) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+				return (List<HitechNews>) getHibernateTemplate().execute(
+						new HibernateCallback() {
+							public Object doInHibernate(Session session)
+									throws HibernateException {
+								StringBuffer hql = new StringBuffer("from HitechNews u where 1 = 1");
+
+								if(hitechNewsType != null && hitechNewsType.getValue() != NewsType.ALL.getValue()){
+									hql.append(" and u.hitechNewsType = :hitechNewsType");
+								}
+								if(isApply != null && isApply.getValue() != YesNoStatus.ALL.getValue()){
+									hql.append(" and u.isApply = :isApply");
+								}
+								hql.append(" order by u.updateTime desc");
+								Query query = session.createQuery(hql.toString());
+										
+								if(hitechNewsType != null && hitechNewsType.getValue() != HitechNewsType.ALL.getValue()){
+									query.setParameter("hitechNewsType", hitechNewsType);
+								}
+								if(isApply != null && isApply.getValue() != YesNoStatus.ALL.getValue()){
+									query.setParameter("isApply", isApply);
+								}
+								if(pageBean.isPageFlag()){
+									if(pageBean.getPageSize() != 0){
+										query.setFirstResult((pageBean.getPage() - 1) * pageBean.getPageSize());
+										query.setMaxResults(pageBean.getPageSize());
+									}
+								}
+								return query.list();
+							}
+						});
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@Override
+	public List<HitechNews> pictureNewsListForJson(final YesNoStatus isApply,
+			final YesNoStatus isImageNews, final Integer newsSize) {
+		// TODO Auto-generated method stub
+		return (List<HitechNews>) getHibernateTemplate().execute(
+				new HibernateCallback() {
+					public Object doInHibernate(Session session)
+							throws HibernateException {
+						StringBuffer hql = new StringBuffer("from HitechNews u where 1 = 1");
+
+						if(isApply != null && isApply.getValue() != YesNoStatus.ALL.getValue()){
+							hql.append(" and u.isApply = :isApply");
+						}
+						if(isImageNews != null && isImageNews.getValue() != YesNoStatus.ALL.getValue()){
+							hql.append(" and u.isImageNews = :isImageNews");
+						}
+						hql.append(" order by u.updateTime desc");
+						Query query = session.createQuery(hql.toString());
+								
+						if(isApply != null && isApply.getValue() != YesNoStatus.ALL.getValue()){
+							query.setParameter("isApply", isApply);
+						}
+						if(isImageNews != null && isImageNews.getValue() != YesNoStatus.ALL.getValue()){
+							query.setParameter("isImageNews", isImageNews);
+						}
+						if(newsSize != null && newsSize != 0) {
+							query.setMaxResults(newsSize);
+						}
+						
+						return query.list();
+					}
+				});
 	}
 
 }

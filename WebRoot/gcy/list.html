@@ -4,16 +4,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
 <title>滦平县人力资源和社会保障局</title>
-<meta name="description" content="">
-<meta name="keywords" content="">
-<link rel="stylesheet" type="text/css" href="css/gcy.css" media="screen">
-<link rel="stylesheet" type="text/css" href="css/gcy_main.css" media="screen">
-<link rel="stylesheet" type="text/css" href="css/mmcf.css" media="screen">
-<link rel="stylesheet" type="text/css" href="css/common.css" media="screen">
-<link rel="stylesheet" type="text/css" href="css/type.css" media="screen">
-<link rel="stylesheet" type="text/css" href="css/article.css" media="screen">
+<meta name="description" content="" />
+<meta name="keywords" content="" />
+<link rel="stylesheet" type="text/css" href="css/gcy.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/gcy_main.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/mmcf.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/common.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/type.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/article.css" media="screen" />
 <script type="text/javascript">
-var NEWS_URL_CONSTANT = "/prsj/forhead/news.html?newsId=";
+var NEWS_URL_CONSTANT = "/prsj/gcy/news.html?newsId=";
 var PAGE_SIZE = 20;
 </script>
 <script src="js/hm.js"></script>
@@ -23,7 +23,7 @@ var PAGE_SIZE = 20;
 //新闻
 var listTypeValue = location.search.split('&')[0].replace("?listTypeValue=", "");
 var pageNumber = location.search.split('&')[1].replace("pageNumber=", "");
-$.post("/prsj/news/newsListForJson.do",
+$.post("/prsj/hitechNews/hitechNewsListForJson.do",
 		{
 			"listTypeValue": listTypeValue,
 			"pageNumber": pageNumber,
@@ -44,7 +44,7 @@ $.post("/prsj/news/newsListForJson.do",
 			}
 		},"json");
 function jumpPage(pageNumber){
-	$.post("/prsj/news/newsListForJson.do",
+	$.post("/prsj/hitechNews/hitechNewsListForJson.do",
 			{
 				"listTypeValue": listTypeValue,
 				"pageNumber": pageNumber,
@@ -75,7 +75,7 @@ function jumpPage(pageNumber){
 	</div>
 	<!-- 导航部分结束 -->
 
-<div class="w980 center main">
+	<div class="w980 center main">
 	<div class="mmcwide articleleft fl">
     	<div id="place" class="place"></div>
         <div class="viewbox">
@@ -87,10 +87,11 @@ function jumpPage(pageNumber){
     	<div class="mmslor">
     		<div class="lortitle"><strong>公告通知</strong></div>
     		<div id="tongzhigonggao" class="newslist"></div>
-    		<div class="lortitle"><strong>热点内容</strong></div>
-    		<div id="redianneirong" class="newslist"></div>
+    		<div class="lortitle"><strong>园区动态</strong></div>
+    		<div id="yuanqudongtai" class="newslist"></div>
 		    
 		</div>
+    </div>
     </div>
     
 

@@ -22,7 +22,7 @@ public class LogDaoImpl extends HibernateDaoSupport implements LogDao {
 		return getHibernateTemplate().get(Log.class, ID);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public List<Log> list(final String userName, final String name, final Date beginDate,
 			final Date endDate, final Long logType, final String url, final String actionName, final String params, final String ip, final PageBean pageBean) {

@@ -1,6 +1,9 @@
 package rsj.admin.web.constant;
 
 public class Global {
+	public final static Character MAIL_TO_SPILT_KEY = ',';//邮箱之间隔离关键字
+	public final static String MAIL_SUFFIX = "（滦平县人社局）";//邮件正文后缀
+	
 	public final static String USER_SESSION = "USER_SESSION";
 	
 	public final static String API_MAP_KEY_LIST = "list";

@@ -129,6 +129,11 @@
 			<result name="inputForm">/WEB-INF/jsp/news/newsInputL.jsp</result>
 			<result name="init">/WEB-INF/jsp/news/newsInputInit.jsp</result>
 		</action>
+		<action name="newsMail" class="newsMailAction">
+			<interceptor-ref name="userSessionStack" />
+			<result name="list">/WEB-INF/jsp/news/newsMailList.jsp</result>
+			<result name="inputForm">/WEB-INF/jsp/news/newsMailInput.jsp</result>
+		</action>
 		<action name="newsListForJson" class="newsListForJsonAction">
 		</action>
 		<action name="pictureNewsListForJson" class="pictureNewsListForJsonAction">
@@ -143,6 +148,23 @@
 	
 	<package name="report" extends="default" namespace="/report">
 		<action name="reportSubmitForJson" class="reportSubmitForJsonAction">
+		</action>
+	</package>
+	
+	<package name="hitechNews" extends="default" namespace="/hitechNews">
+		<action name="hitechNews" class="hitechNewsAction">
+			<interceptor-ref name="userSessionStack" />
+			<result name="list">/WEB-INF/jsp/hitechNews/hitechNewsList.jsp</result>
+			<result name="view">/WEB-INF/jsp/hitechNews/hitechNewsView.jsp</result>
+			<result name="inputForm">/WEB-INF/jsp/hitechNews/hitechNewsInput.jsp</result>
+		</action>
+		<action name="firstPageHitechNewsListForJson" class="firstPageHitechNewsListForJsonAction">
+		</action>
+		<action name="hitechNewsForJson" class="hitechNewsForJsonAction">
+		</action>
+		<action name="hitechNewsListForJson" class="hitechNewsListForJsonAction">
+		</action>
+		<action name="pictureHitechNewsListForJson" class="pictureHitechNewsListForJsonAction">
 		</action>
 	</package>
 	

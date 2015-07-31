@@ -19,7 +19,7 @@ public class PermissionDaoImpl extends HibernateDaoSupport implements Permission
 		getHibernateTemplate().merge(permission);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public List<Permission> list(final Permission permission) {
 		// TODO Auto-generated method stub

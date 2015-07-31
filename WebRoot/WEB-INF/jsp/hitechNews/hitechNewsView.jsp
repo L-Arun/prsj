@@ -15,24 +15,14 @@
 	<script type="text/javascript" src="${ctx}/js/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript">
 		function apply(newsId) {
-			var mailCheckbox = $("[name='mailTo']:checked");
-			var mailToListStr = "";
-			for (var i = 0; i < mailCheckbox.size(); i++) {
-				if (i == mailCheckbox.size() - 1) {
-					mailToListStr += mailCheckbox[i].value;
-				} else {
-					mailToListStr += mailCheckbox[i].value + ",";
-				}
-			}
-			$.post( "${ctx}/news/news.do",
+			$.post( "${ctx}/hitechNews/hitechNews.do",
 				{
 					"action": "apply",
-					"news.newsId" : newsId,
-					"mailToListStr" : mailToListStr,
+					"hitechNews.newsId" : newsId,
 				},
 				function(object){
 					if (object.code == 0) {
-						alert(object.msg);
+						alert("成功");
 						$("#isApply").html("是");
 					} else {
 						alert(msg);
@@ -48,38 +38,37 @@
     		<div>
 	    		<table cellpadding="0" cellspacing="0" border="0" style="width:50%" class="querytab">
 	    			<tr>
-		    			<td class="alignright_30">编码：</td><td class="alignleft">${news.newsId}</td>
+		    			<td class="alignright_30">编码：</td><td class="alignleft">${hitechNews.newsId}</td>
 		    		</tr>
 		    		<tr>
-		    			<td class="alignright_30">标题：</td><td class="alignleft">${news.title}</td>
+		    			<td class="alignright_30">标题：</td><td class="alignleft">${hitechNews.title}</td>
 		    		</tr>
 		    		<tr>
-		    			<td class="alignright_30">作者：</td><td class="alignleft">${news.username}(<fmt:formatDate value="${news.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/>)</td>
+		    			<td class="alignright_30">作者：</td><td class="alignleft">${hitechNews.username}(<fmt:formatDate value="${hitechNews.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/>)</td>
 		    		</tr>
 	    			<tr>
-		    			<td class="alignright_30">最后修改：</td><td class="alignleft">${news.updateUsername}(<fmt:formatDate value="${news.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/>)</td>
+		    			<td class="alignright_30">最后修改：</td><td class="alignleft">${hitechNews.updateUsername}(<fmt:formatDate value="${hitechNews.updateTime}" pattern="yyyy-MM-dd HH:mm:ss"/>)</td>
 		    		</tr>
 		    		<tr>
-		    			<td class="alignright_30">分类：</td><td class="alignleft">${news.newsType.name}</td>
+		    			<td class="alignright_30">分类：</td><td class="alignleft">${hitechNews.hitechNewsType.name}</td>
 		    		</tr>
 		    		<tr>
-		    			<td class="alignright_30">审核状态：</td><td class="alignleft" id="isApply">${news.isApply.name}
-		    			<c:if test="${news.isApply.value == 0}">
-		    				<input type="button" value="通过审核" onclick="apply(${news.newsId})"/>
-		    				<s:checkboxlist list="newsMailList" listKey="newsMailAddr" listValue="newsMailName" name="mailTo"></s:checkboxlist>
+		    			<td class="alignright_30">审核状态：</td><td class="alignleft" id="isApply">${hitechNews.isApply.name}
+		    			<c:if test="${hitechNews.isApply.value == 0}">
+		    				<input type="button" value="通过审核" onclick="apply(${hitechNews.newsId})"/>
 		    			</c:if>
 		    			
 		    			</td>
 		    		</tr>
 		    		<tr>
-		    			<td class="alignright_30">内容预览：</td><td class="alignleft">${news.content}</td>
+		    			<td class="alignright_30">内容预览：</td><td class="alignleft">${hitechNews.content}</td>
 		    		</tr>
 		    		<tr>
-		    			<td class="alignright_30">备注：</td><td class="alignleft">${news.memo}</td>
+		    			<td class="alignright_30">备注：</td><td class="alignleft">${hitechNews.memo}</td>
 		    		</tr>
 	    		</table>
     		</div>
-    		<div class="margin_10"><center><a href="${ctx}/news/news.do" class="easyui-linkbutton" iconCls="icon-reload">返回列表</a></center></div>
+    		<div class="margin_10"><center><a href="${ctx}/hitechNews/hitechNews.do" class="easyui-linkbutton" iconCls="icon-reload">返回列表</a></center></div>
     	</div>
     </div>
   </body>

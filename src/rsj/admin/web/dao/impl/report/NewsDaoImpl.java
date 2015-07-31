@@ -23,7 +23,7 @@ public class NewsDaoImpl extends HibernateDaoSupport implements ReportDao {
 		return getHibernateTemplate().get(Report.class, id);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public PageBean getPageBean(final Long reportId, final String peopleName,
 			final String peopleTel, final String peoplePost, final String peopleEmail,
@@ -155,7 +155,7 @@ public class NewsDaoImpl extends HibernateDaoSupport implements ReportDao {
 				});
 	}
 
-	@SuppressWarnings({ "unchecked"})
+	@SuppressWarnings({ "unchecked", "rawtypes"})
 	@Override
 	public List<Report> list(final Long reportId, final String peopleName,
 			final String peopleTel, final String peoplePost, final String peopleEmail,

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+        
+<hibernate-mapping package="rsj.admin.web.domain.news">
+	<class name="NewsMail" table="admin_news_mail">
+        <id name="newsMailId" column="news_mail_id">
+            <generator class="native"></generator>
+        </id>
+        <property name="newsMailName" column="news_mail_name"/>
+        <property name="newsMailAddr" column="news_mail_addr"/>
+        <property name="isDefaultSend">
+        	<column name="is_default_send" precision="22" scale="0" not-null="true" />
+			<type name="rsj.admin.web.hibernate.usertype.IntegerBeanLabelUserType">
+				<param name="targetClass">
+					com.lehecai.core.YesNoStatus
+				</param>
+			</type>
+        </property>
+        <property name="memo" length="4000"/>
+    </class>
+</hibernate-mapping>

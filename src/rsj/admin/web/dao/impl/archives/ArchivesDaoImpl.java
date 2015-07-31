@@ -18,7 +18,7 @@ import com.lehecai.core.YesNoStatus;
 
 public class ArchivesDaoImpl extends HibernateDaoSupport implements ArchivesDao {
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public List<Archives> list(final String number, final String title, final String department,
 			final Date beginCreateTime, final Date endCreateTime, final Date beginUpdateTime,

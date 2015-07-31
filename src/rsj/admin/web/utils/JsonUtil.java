@@ -20,8 +20,8 @@ public class JsonUtil{
 	* @param pojoCalss
 	* @return
 	*/
-	@SuppressWarnings("unchecked")
-	public static Object getObject4JsonString(String jsonString,Class pojoCalss) throws Exception{
+	@SuppressWarnings("rawtypes")
+	public static Object getObject4JsonString(String jsonString, Class pojoCalss) throws Exception{
 		Object pojo;
 		JSONObject jsonObject = JSONObject.fromObject( jsonString );
 		pojo = JSONObject.toBean(jsonObject,pojoCalss);

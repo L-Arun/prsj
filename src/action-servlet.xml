@@ -27,7 +27,9 @@
 		<bean id="logAction" class="rsj.admin.web.action.log.LogAction" scope="prototype"/>
         
 		<bean id="archivesAction" class="rsj.admin.web.action.archives.ArchivesAction" scope="prototype"/>
-		<bean id="newsAction" class="rsj.admin.web.action.news.NewsAction" scope="prototype"/>
+		<bean id="newsAction" class="rsj.admin.web.action.news.NewsAction" scope="prototype" />
+		<bean id="newsMailAction" class="rsj.admin.web.action.news.NewsMailAction" scope="prototype" />
+		<bean id="hitechNewsAction" class="rsj.admin.web.action.hitechNews.HitechNewsAction" scope="prototype"/>
 		
 		<!-- JSON Action Start -->
 		<bean id="newsListForJsonAction" class="rsj.admin.web.action.news.NewsListForJsonAction" scope="prototype"/>
@@ -35,8 +37,13 @@
 		<bean id="firstPageNewsListForJsonAction" class="rsj.admin.web.action.news.FirstPageNewsListForJsonAction" scope="prototype"/>
 		<bean id="hotNewsListForJsonAction" class="rsj.admin.web.action.news.HotNewsListForJsonAction" scope="prototype"/>
 		<bean id="newsForJsonAction" class="rsj.admin.web.action.news.NewsForJsonAction" scope="prototype"/>
-
 		<bean id="reportSubmitForJsonAction" class="rsj.admin.web.action.report.ReportSubmitForJsonAction" scope="prototype"/>
+		
+		
+		<bean id="pictureHitechNewsListForJsonAction" class="rsj.admin.web.action.hitechNews.PictureHitechNewsListForJsonAction" scope="prototype"/>
+		<bean id="hitechNewsListForJsonAction" class="rsj.admin.web.action.hitechNews.HitechNewsListForJsonAction" scope="prototype"/>
+		<bean id="hitechNewsForJsonAction" class="rsj.admin.web.action.hitechNews.HitechNewsForJsonAction" scope="prototype"/>
+		<bean id="firstPageHitechNewsListForJsonAction" class="rsj.admin.web.action.hitechNews.FirstPageHitechNewsListForJsonAction" scope="prototype"/>
 		<!-- JSON Action End -->
 		
 </beans>

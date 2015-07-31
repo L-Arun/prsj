@@ -45,6 +45,8 @@
 		      	
 		      	<value>rsj/admin/web/maps/archives/Archives.xml</value>
 		      	<value>rsj/admin/web/maps/news/News.xml</value>
+		      	<value>rsj/admin/web/maps/news/NewsMail.xml</value>
+		      	<value>rsj/admin/web/maps/hitechNews/HitechNews.xml</value>
 		      	<value>rsj/admin/web/maps/report/Report.xml</value>
 		       
 		      </list>
@@ -70,5 +72,7 @@
 	
 		<bean id="archivesDao" class="rsj.admin.web.dao.impl.archives.ArchivesDaoImpl"/>
 		<bean id="newsDao" class="rsj.admin.web.dao.impl.news.NewsDaoImpl"/>
+		<bean id="newsMailDao" class="rsj.admin.web.dao.impl.news.NewsMailDaoImpl"/>
+		<bean id="hitechNewsDao" class="rsj.admin.web.dao.impl.hitechNews.HitechNewsDaoImpl"/>
 		<bean id="reportDao" class="rsj.admin.web.dao.impl.report.NewsDaoImpl"/>
 </beans>

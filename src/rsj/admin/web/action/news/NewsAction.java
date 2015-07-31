@@ -11,17 +11,22 @@ import net.sf.json.JSONObject;
 import org.apache.struts2.ServletActionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 
 import rsj.admin.web.action.BaseAction;
 import rsj.admin.web.bean.PageBean;
 import rsj.admin.web.bean.UserSessionBean;
 import rsj.admin.web.constant.Global;
 import rsj.admin.web.domain.news.News;
+import rsj.admin.web.domain.news.NewsMail;
 import rsj.admin.web.enums.ArchivesType;
 import rsj.admin.web.enums.NewsType;
+import rsj.admin.web.service.news.NewsMailService;
 import rsj.admin.web.service.news.NewsService;
 import rsj.admin.web.utils.DateUtil;
 import rsj.admin.web.utils.PageUtil;
+import rsj.admin.web.utils.StringUtil;
 
 import com.lehecai.core.YesNoStatus;
 import com.opensymphony.xwork2.Action;
@@ -31,6 +36,7 @@ public class NewsAction extends BaseAction {
 	private Logger logger = LoggerFactory.getLogger(NewsAction.class);
 	
 	private NewsService newsService;
+	private NewsMailService newsMailService;
 	
 	private News news;
 	
@@ -49,6 +55,9 @@ public class NewsAction extends BaseAction {
 	private Integer isImageNewsValue;
 	private String imagePath;
 	private String memo;
+	
+	private JavaMailSender mailSender;
+	private String mailToListStr; 
 	
 	public String handle() {
 		logger.info("进入查询新闻列表");
@@ -182,6 +191,17 @@ public class NewsAction extends BaseAction {
 				news.setIsApply(YesNoStatus.YES);
 				newsService.merge(news);
 				rc = 0;
+				msg = "审核通过";
+				
+				//自动发送邮件
+				SimpleMailMessage mail = new SimpleMailMessage();    
+				//使用辅助类MimeMessage设定参数  
+				mail.setFrom("lpxrsjbgs@126.com");    
+				mail.setSubject(news.getTitle());    
+				mail.setText(news.getContent().replaceAll("</?[^>]+>", "").replaceAll("\\s*|\t|\r|\n", "").replaceAll("&nbsp;", "") + Global.MAIL_SUFFIX); 
+				mail.setTo(StringUtil.split(mailToListStr, Global.MAIL_TO_SPILT_KEY));
+				mailSender.send(mail);
+				
 			} else {
 				rc = 1;
 				msg = "审核程序错误";
@@ -190,6 +210,7 @@ public class NewsAction extends BaseAction {
 			rc = 1;
 			msg = "审核程序错误";
 		}
+		
 		json.put("code", rc);
 		json.put("msg", msg);
 		writeRs(response, json);
@@ -360,5 +381,29 @@ public class NewsAction extends BaseAction {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
+	public JavaMailSender getMailSender() {
+		return mailSender;
+	}
+
+	public void setMailSender(JavaMailSender mailSender) {
+		this.mailSender = mailSender;
+	}
+
+	public void setMailToListStr(String mailToListStr) {
+		this.mailToListStr = mailToListStr;
+	}
+
+	public NewsMailService getNewsMailService() {
+		return newsMailService;
+	}
+
+	public void setNewsMailService(NewsMailService newsMailService) {
+		this.newsMailService = newsMailService;
+	}
 	
+	public List<NewsMail> getNewsMailList() {
+		return newsMailService.list(null, null, null, null);
+	}
+
 }

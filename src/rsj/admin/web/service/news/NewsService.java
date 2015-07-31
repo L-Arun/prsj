@@ -71,7 +71,7 @@ public interface NewsService {
 	/**
 	 * 
 	 * 
-	 * @param yisApplyes
+	 * @param isApplyes
 	 * @param isImageNews
 	 * @param newsSize
 	 * @return

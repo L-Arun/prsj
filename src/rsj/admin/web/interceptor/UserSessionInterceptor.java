@@ -28,7 +28,7 @@ public class UserSessionInterceptor extends AbstractInterceptor {
 
 	private PermissionItemService permissionItemService;
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public String intercept(ActionInvocation invocation) throws Exception{
 		boolean pass = false;
 		logger.info("Enter UserSessionInterceptor");

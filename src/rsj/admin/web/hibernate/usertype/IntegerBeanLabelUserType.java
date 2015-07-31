@@ -16,7 +16,7 @@ import com.lehecai.core.IntegerBeanLabel;
 public class IntegerBeanLabelUserType implements UserType, ParameterizedType {
 
 	private static final int[] SQL_TYPES = new int[]{Types.INTEGER};
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("rawtypes")
 	private Class targetClass;
 
     public void setParameterValues(Properties parameters) {
@@ -32,7 +32,7 @@ public class IntegerBeanLabelUserType implements UserType, ParameterizedType {
         return SQL_TYPES;
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("rawtypes")
 	public Class returnedClass() {
         return targetClass;
     }

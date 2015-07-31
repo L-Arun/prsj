@@ -1,13 +1,7 @@
 package rsj.admin.web.interceptor;
 
-import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.struts2.ServletActionContext;
-import org.hibernate.type.TextType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,16 +19,8 @@ import rsj.admin.web.multiconfirm.param.IMulticonfirmParam;
 import rsj.admin.web.multiconfirm.param.MulticonfirmParamFactory;
 import rsj.admin.web.service.multiconfirm.MulticonfirmService;
 import rsj.admin.web.service.user.UserService;
-import rsj.admin.web.utils.MailUtil;
-import rsj.admin.web.utils.StringUtil;
 
-import com.lehecai.core.YesNoStatus;
-import com.lehecai.core.queue.QueueConstant;
 import com.lehecai.core.queue.QueueTaskService;
-import com.lehecai.core.queue.mail.MailQueueTask;
-import com.lehecai.core.queue.sms.SmsQueueTask;
-import com.lehecai.core.util.CoreDateUtils;
-import com.lehecai.core.util.CoreHttpUtils;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
@@ -61,7 +47,7 @@ public class MulticonfirmInterceptor extends AbstractInterceptor {
 	private QueueTaskService smsQueueTaskService;
 	private MulticonfirmService multiconfirmService;
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public String intercept(ActionInvocation invocation) throws Exception{
 		
 		StringBuffer message = new StringBuffer();

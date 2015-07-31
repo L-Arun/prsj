@@ -50,7 +50,7 @@ public class MulticonfirmSign {
 		return map;
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "rawtypes" })
 	public static String getConfigString(String actionName, String methodName,
 			Map paramMap, MulticonfirmConfig multiconfirmConfig) {
 		if (multiconfirmConfig.getSpecialSigns() == null || multiconfirmConfig.getSpecialSigns().equals("")) {

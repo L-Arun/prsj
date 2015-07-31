@@ -21,7 +21,7 @@ public class MulticonfirmTaskDaoImpl extends HibernateDaoSupport implements Mult
 		return getHibernateTemplate().get(MulticonfirmTask.class, id);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public List<MulticonfirmTask> getTaskList(final Long id, final Long configId, final String taskKey,
 			final MulticonfirmTaskStatus taskStatus, final Date createTimeFrom, final Date createTimeTo, final Date timeoutTimeFrom, final Date timeoutTimeTo, final PageBean pageBean) {
@@ -88,7 +88,7 @@ public class MulticonfirmTaskDaoImpl extends HibernateDaoSupport implements Mult
 				});
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public PageBean getTaskPageBean(final Long id, final Long configId, final String taskKey,
 			final MulticonfirmTaskStatus taskStatus, final Date createTimeFrom, final Date createTimeTo, final Date timeoutTimeFrom, final Date timeoutTimeTo, final PageBean pageBean) {
@@ -162,7 +162,7 @@ public class MulticonfirmTaskDaoImpl extends HibernateDaoSupport implements Mult
 				});
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public MulticonfirmTask getTask(final String taskKey, final MulticonfirmTaskStatus taskStatus) {
 		List<MulticonfirmTask> list = (List<MulticonfirmTask>) getHibernateTemplate().execute(

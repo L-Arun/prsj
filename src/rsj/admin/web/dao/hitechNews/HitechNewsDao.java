@@ -55,5 +55,36 @@ public interface HitechNewsDao {
 	 * @return
 	 */
 	void merge(HitechNews hitechNews);
-
+	/**
+	 * 
+	 * @param 
+	 * @return
+	 */
+	List<HitechNews> listForJson(HitechNewsType hitechNewsType, YesNoStatus isApply, Integer newsSize);
+	/**
+	 * 
+	 * @param hitechNewsType
+	 * @param isApply
+	 * @param pageBean
+	 * @return
+	 */
+	PageBean getListForJsonPageBean(HitechNewsType hitechNewsType, YesNoStatus isApply,	PageBean pageBean);
+	/**
+	 * 
+	 * @param hitechNewsType
+	 * @param isApply
+	 * @param pageBean
+	 * @return
+	 */
+	List<HitechNews> listForJson(HitechNewsType hitechNewsType, YesNoStatus isApply, PageBean pageBean);
+	/**
+	 * 
+	 * 
+	 * @param isApplyes
+	 * @param isImageNews
+	 * @param newsSize
+	 * @return
+	 */
+	List<HitechNews> pictureNewsListForJson(YesNoStatus isApply, YesNoStatus isImageNews,
+			Integer newsSize);
 }

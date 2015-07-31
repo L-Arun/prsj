@@ -16,7 +16,7 @@ import rsj.admin.web.multiconfirm.MulticonfirmConfigType;
 
 public class MulticonfirmConfigDaoImpl extends HibernateDaoSupport implements MulticonfirmConfigDao {
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public MulticonfirmConfig get(final String configKey) {
 		List<MulticonfirmConfig> list = (List<MulticonfirmConfig>) getHibernateTemplate().execute(
@@ -53,7 +53,7 @@ public class MulticonfirmConfigDaoImpl extends HibernateDaoSupport implements Mu
 		return getHibernateTemplate().merge(multiconfirmConfig);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public List<MulticonfirmConfig> getConfigList(final Long id, final String configKey,
 			final String configName, final MulticonfirmConfigType mct, final Date createTimeFrom, final Date createTimeTo, final PageBean pageBean) {
@@ -112,7 +112,7 @@ public class MulticonfirmConfigDaoImpl extends HibernateDaoSupport implements Mu
 		getHibernateTemplate().delete(multiconfirmConfig);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public PageBean getConfigPageBean(final Long id, final String configKey,
 			final String configName, final MulticonfirmConfigType mct, final Date createTimeFrom, final Date createTimeTo, final PageBean pageBean) {

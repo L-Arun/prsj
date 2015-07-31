@@ -38,7 +38,7 @@ public class LogInterceptor extends AbstractInterceptor {
 	}
 	private LogService logService;
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public String intercept(ActionInvocation invocation) throws Exception{	
 		ActionContext ac = invocation.getInvocationContext();
 		HttpServletRequest request= (HttpServletRequest) ac.get(StrutsStatics.HTTP_REQUEST);  
