@@ -58,7 +58,7 @@ public class DateUtil {
 	 * @function 获取带有年份的向量
 	 * @return 向量
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static Vector getYears() {
 		Calendar cd = Calendar.getInstance();
 	 	Vector years = new Vector();
@@ -74,7 +74,7 @@ public class DateUtil {
 	 * @param end 结束年份
 	 * @return 向量
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static Vector getYears(int begin, int end) {
 		Vector years = new Vector();
 		for (int i = end; i >= begin; i --) {
@@ -88,7 +88,7 @@ public class DateUtil {
 	 * @param begin 开始年份
 	 * @return 向量
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static Vector getYears(int begin) {
 		Calendar cd = Calendar.getInstance();
 	 	Vector years = new Vector();
@@ -102,7 +102,7 @@ public class DateUtil {
 	 * @function 获取带有月份的向量
 	 * @return 向量
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static Vector getMonths() {
     	Vector months = new Vector(12);
 		for(int i=1;i<=12;i++){
@@ -116,7 +116,7 @@ public class DateUtil {
 	 * @param begin 开始月份
 	 * @return 向量
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static Vector getMonths(int begin){
 		Calendar cd = Calendar.getInstance();
 		Vector months = new Vector();
@@ -176,7 +176,7 @@ public class DateUtil {
 	 * @function 获取四季向量
 	 * @return 向量
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static Vector getSeason(){
 		Vector season = new Vector(4);
 		for(int i=1;i<=4;i++){
@@ -356,7 +356,7 @@ public class DateUtil {
 	 * @function 获取四季向量
 	 * @return 向量
 	 */	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static Vector getSeasons(){
 		Vector seasons = new Vector(4);
 		for(int i=1;i<=4;i++){

@@ -102,7 +102,7 @@ public class ArchivesDaoImpl extends HibernateDaoSupport implements ArchivesDao 
 							query.setParameter("memo", "%" + memo + "%");
 						}
 						
-						if(pageBean.isPageFlag()){
+						if(pageBean != null && pageBean.isPageFlag()){
 							if(pageBean.getPageSize() != 0){
 								query.setFirstResult((pageBean.getPage() - 1) * pageBean.getPageSize());
 								query.setMaxResults(pageBean.getPageSize());

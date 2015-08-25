@@ -86,7 +86,55 @@ public class ArchivesAction extends BaseAction {
 		logger.info("结束查询日志信息列表");
 		return "list";
 	}
-	
+/**	
+	@SuppressWarnings("deprecation")
+	public String exportExcel() {
+		logger.info("进入导出档案信息列表");
+		
+		
+		YesNoStatus isDigital = null;
+		ArchivesType archivesType = null;
+		if(isDigitalValue != null && isDigitalValue != YesNoStatus.ALL.getValue()){
+			isDigital = YesNoStatus.getItem(isDigitalValue);
+		}
+		if(archivesTypeValue != null && archivesTypeValue != ArchivesType.ALL.getValue()){
+			archivesType = ArchivesType.getItem(archivesTypeValue);
+		}
+		archiveses = archivesService.list(number, title, department, beginCreateTime, endCreateTime, beginUpdateTime, endUpdateTime, archivesType, path, isDigital,
+				memo, null);
+		
+		HSSFWorkbook wb = new HSSFWorkbook();  
+        HSSFSheet sheet = wb.createSheet("sheet1");  
+        for (int i = 0; i < archiveses.size(); i++) {  
+        	HSSFRow row = sheet.createRow((int) i + 1);  
+            Archives a = archiveses.get(i);  
+            // 第四步，创建单元格，并设置值  
+            row.createCell((short) 0).setCellValue(a.getNumber());  
+            row.createCell((short) 1).setCellValue(a.getTitle());  
+            row.createCell((short) 2).setCellValue(a.getDepartment());  
+            row.createCell((short) 3).setCellValue(new SimpleDateFormat("yyyy-mm-dd").format(a.getCreateTime()));  
+            row.createCell((short) 4).setCellValue(a.getArchivesType().getName());  
+            row.createCell((short) 5).setCellValue(a.getIsDigital().getName());  
+            row.createCell((short) 6).setCellValue(a.getPath());  
+            row.createCell((short) 7).setCellValue(a.getTitle());  
+        }  
+        // 第六步，将文件存到指定位置  
+        try  
+        {  
+            FileOutputStream fout = new FileOutputStream("E:/archives.xls");  
+            wb.write(fout);  
+            fout.close();  
+        }  
+        catch (Exception e)  
+        {  
+            e.printStackTrace();  
+        }  
+		
+		logger.info("结束导出日志信息列表");
+		
+		return "list";
+	}
+	*/
 	public String view(){
 		logger.info("进入查询文件信息");
 		if(archives != null && archives.getId() != null){

@@ -60,6 +60,7 @@ public class NewsType extends IntegerBeanLabelItem{
 	public final static NewsType ZHAO_PIN = new NewsType("招聘信息", 9);
 	public final static NewsType WEN_DA = new NewsType("政策问答", 10);
 	public final static NewsType XIA_ZAI = new NewsType("资料下载", 11);
+	public final static NewsType BAN_LI_QING_KUANG = new NewsType("办理情况", 12);
 	public final static NewsType QI_TA = new NewsType("其他", 99);
 	
 	

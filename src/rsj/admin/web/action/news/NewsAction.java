@@ -11,6 +11,7 @@ import net.sf.json.JSONObject;
 import org.apache.struts2.ServletActionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
@@ -193,14 +194,22 @@ public class NewsAction extends BaseAction {
 				rc = 0;
 				msg = "审核通过";
 				
-				//自动发送邮件
-				SimpleMailMessage mail = new SimpleMailMessage();    
-				//使用辅助类MimeMessage设定参数  
-				mail.setFrom("lpxrsjbgs@126.com");    
-				mail.setSubject(news.getTitle());    
-				mail.setText(news.getContent().replaceAll("</?[^>]+>", "").replaceAll("\\s*|\t|\r|\n", "").replaceAll("&nbsp;", "") + Global.MAIL_SUFFIX); 
-				mail.setTo(StringUtil.split(mailToListStr, Global.MAIL_TO_SPILT_KEY));
-				mailSender.send(mail);
+				if (mailToListStr != null && !"".equals(mailToListStr)) {
+					try {
+						//自动发送邮件
+						SimpleMailMessage mail = new SimpleMailMessage();    
+						//使用辅助类MimeMessage设定参数  
+						mail.setFrom("lpxrsjbgs@126.com");    
+						mail.setSubject(news.getTitle());    
+						mail.setText(news.getContent().replaceAll("</?[^>]+>", "").replaceAll("\\s*|\t|\r|\n", "").replaceAll("&nbsp;", "") + Global.MAIL_SUFFIX); 
+						mail.setTo(StringUtil.split(mailToListStr, Global.MAIL_TO_SPILT_KEY));
+						mailSender.send(mail);
+					} catch (MailException e) {
+						e.printStackTrace();
+						logger.error("MailSendErrorMassage", e);
+						msg = msg + ",邮件发送异常";
+					}
+				}
 				
 			} else {
 				rc = 1;
