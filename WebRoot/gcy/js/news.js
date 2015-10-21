@@ -3,7 +3,7 @@ var NEWS_URL_CONSTANT = "/prsj/gcy/news.html?newsId=";
 var NEWS_SIZE_8 = 8;
 var NEWS_TYPE_ALL = -1;
 var NEWS_TYPE_DONG_TAI = 2;
-var NEWS_TYPE_TONG_ZHI = 7;
+var NEWS_TYPE_TONG_ZHI = 5;
 
 //园区动态
 $.post(url,

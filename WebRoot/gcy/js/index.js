@@ -36,7 +36,7 @@ var url = "/prsj/hitechNews/firstPageHitechNewsListForJson.do";
 //园区动态
 $.post(url,
 	{
-		"listTypeValue" : NEWS_TYPE_DONG_TAI,
+		"listTypeValue" : NEWS_TYPE_ALL,
 		"newsSize" : NEWS_SIZE_9,
 	},
 	function(object){

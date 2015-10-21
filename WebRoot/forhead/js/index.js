@@ -16,6 +16,7 @@ var NEWS_TYPE_TONG_ZHI = 7;
 var NEWS_TYPE_JI_GOU = 8;
 var NEWS_TYPE_ZHAO_PIN = 9;
 var NEWS_TYPE_WEN_DA = 10;
+var NEWS_TYPE_WEN_JIAN = 13;
 
 //图片新闻
 $.post("/prsj/news/pictureNewsListForJson.do",
@@ -190,10 +191,10 @@ $.post(url,
 				$("#xinxi_jigoushezhi").append(str);
 			}
 		},"json");
-//政策问答
+//文件资料
 $.post(url,
 		{
-			"listTypeValue" : NEWS_TYPE_WEN_DA,
+			"listTypeValue" : NEWS_TYPE_WEN_JIAN,
 			"newsSize" : NEWS_SIZE_6,
 		},
 		function(object){
@@ -204,7 +205,7 @@ $.post(url,
 					str += "<li><a href='" + NEWS_URL_CONSTANT + data[i].key + "'>" + data[i].name + "</a></li>";
 				}
 				str = str + "</ul>";
-				$("#xinxi_zhengcewenda").append(str);
+				$("#xinxi_wenjianziliao").append(str);
 			}
 		},"json");
 //招聘信息

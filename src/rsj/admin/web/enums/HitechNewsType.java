@@ -54,7 +54,8 @@ public class HitechNewsType extends IntegerBeanLabelItem{
 	public final static HitechNewsType JIAN_SHE = new HitechNewsType("走进园区", 3);
 	public final static HitechNewsType WEN_DA = new HitechNewsType("业务问答", 4);
 	public final static HitechNewsType TONG_ZHI = new HitechNewsType("通知公告", 5);
-	public final static HitechNewsType TUAN_DUI = new HitechNewsType("入驻团队", 6);
+	public final static HitechNewsType TUAN_DUI = new HitechNewsType("入驻团队", 6); 
+	public final static HitechNewsType ZI_LIAO = new HitechNewsType("资料下载", 7); 
 	public final static HitechNewsType QI_TA = new HitechNewsType("其他", 99);
 	
 	

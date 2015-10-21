@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="rsj.admin.web.domain.hitechNews">
+	<class name="HitechNews" table="admin_hitech_news">
+        <id name="newsId" column="news_id">
+            <generator class="native"></generator>
+        </id>
+        <property name="title"/>
+        <property name="hitechNewsType">
+        	<column name="hitech_news_type" precision="22" scale="0" not-null="true" />
+			<type name="rsj.admin.web.hibernate.usertype.IntegerBeanLabelUserType">
+				<param name="targetClass">
+					rsj.admin.web.enums.HitechNewsType
+				</param>
+			</type>
+        </property>
+        <property name="content"/>
+        <property name="viewTimes" column="view_times"/>
+        <property name="username"/>
+        <property name="updateUsername" column="update_username"/>
+        <property name="createTime" column="create_time" not-null="true" update="false"/>
+        <property name="updateTime" column="update_time" not-null="true"/>
+        <property name="isApply">
+        	<column name="is_apply" precision="22" scale="0" not-null="true" />
+			<type name="rsj.admin.web.hibernate.usertype.IntegerBeanLabelUserType">
+				<param name="targetClass">
+					com.lehecai.core.YesNoStatus
+				</param>
+			</type>
+        </property>
+        <property name="isImageNews">
+        	<column name="is_image_news" precision="22" scale="0" not-null="true" />
+			<type name="rsj.admin.web.hibernate.usertype.IntegerBeanLabelUserType">
+				<param name="targetClass">
+					com.lehecai.core.YesNoStatus
+				</param>
+			</type>
+        </property>
+        <property name="imagePath" column="image_path"/>
+        <property name="memo" length="4000"/>
+    </class>
+</hibernate-mapping>
